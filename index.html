@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>常用软件分享</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/user.png" type="image/png">
 </head>
 <body>
     <!-- 导航栏 -->
@@ -32,11 +33,23 @@
     <section id="software" class="software-section">
         <div class="container">
             <h2>推荐软件</h2>
+            
+            <!-- 分类筛选按钮 -->
+            <div class="category-filter">
+                <button class="filter-btn active" data-category="all">全部</button>
+                <button class="filter-btn" data-category="开发工具">开发工具</button>
+                <button class="filter-btn" data-category="浏览器">浏览器</button>
+                <button class="filter-btn" data-category="效率工具">效率工具</button>
+                <button class="filter-btn" data-category="多媒体">多媒体</button>
+                <button class="filter-btn" data-category="设计工具">设计工具</button>
+                <button class="filter-btn" data-category="娱乐">娱乐</button>
+            </div>
+            
             <div class="software-grid">
                 <!-- 软件卡片 1 -->
-                <div class="software-card">
+                <div class="software-card" data-category="开发工具">
                     <div class="software-img">
-                        <img src="https://via.placeholder.com/300x200?text=VS+Code" alt="Visual Studio Code">
+                        <img src="img/vscode.png" alt="Visual Studio Code" loading="lazy">
                     </div>
                     <div class="software-info">
                         <h3>Visual Studio Code</h3>
@@ -46,14 +59,14 @@
                             <span class="tag">免费</span>
                             <span class="tag">开源</span>
                         </div>
-                        <a href="https://code.visualstudio.com/" target="_blank" class="btn btn-secondary">了解更多</a>
+                        <a href="#software-modal" class="btn btn-secondary" data-software="vscode">了解更多</a>
                     </div>
                 </div>
 
                 <!-- 软件卡片 2 -->
-                <div class="software-card">
+                <div class="software-card" data-category="浏览器">
                     <div class="software-img">
-                        <img src="https://via.placeholder.com/300x200?text=Chrome" alt="Google Chrome">
+                        <img src="img/Chorm.webp" alt="Google Chrome" loading="lazy">
                     </div>
                     <div class="software-info">
                         <h3>Google Chrome</h3>
@@ -62,14 +75,14 @@
                             <span class="tag">浏览器</span>
                             <span class="tag">免费</span>
                         </div>
-                        <a href="https://www.google.com/chrome/" target="_blank" class="btn btn-secondary">了解更多</a>
+                        <a href="#software-modal" class="btn btn-secondary" data-software="chrome">了解更多</a>
                     </div>
                 </div>
 
                 <!-- 软件卡片 3 -->
-                <div class="software-card">
+                <div class="software-card" data-category="效率工具">
                     <div class="software-img">
-                        <img src="https://via.placeholder.com/300x200?text=Notion" alt="Notion">
+                        <img src="https://placehold.co/300x200?text=Notion" alt="Notion" loading="lazy">
                     </div>
                     <div class="software-info">
                         <h3>Notion</h3>
@@ -78,14 +91,14 @@
                             <span class="tag">效率工具</span>
                             <span class="tag">免费/付费</span>
                         </div>
-                        <a href="https://www.notion.so/" target="_blank" class="btn btn-secondary">了解更多</a>
+                        <a href="#software-modal" class="btn btn-secondary" data-software="notion">了解更多</a>
                     </div>
                 </div>
 
                 <!-- 软件卡片 4 -->
-                <div class="software-card">
+                <div class="software-card" data-category="多媒体">
                     <div class="software-img">
-                        <img src="https://via.placeholder.com/300x200?text=OBS" alt="OBS Studio">
+                        <img src="https://placehold.co/300x200?text=OBS" alt="OBS Studio" loading="lazy">
                     </div>
                     <div class="software-info">
                         <h3>OBS Studio</h3>
@@ -95,14 +108,14 @@
                             <span class="tag">免费</span>
                             <span class="tag">开源</span>
                         </div>
-                        <a href="https://obsproject.com/" target="_blank" class="btn btn-secondary">了解更多</a>
+                        <a href="#software-modal" class="btn btn-secondary" data-software="obs">了解更多</a>
                     </div>
                 </div>
 
                 <!-- 软件卡片 5 -->
-                <div class="software-card">
+                <div class="software-card" data-category="设计工具">
                     <div class="software-img">
-                        <img src="https://via.placeholder.com/300x200?text=Figma" alt="Figma">
+                        <img src="https://placehold.co/300x200?text=Figma" alt="Figma" loading="lazy">
                     </div>
                     <div class="software-info">
                         <h3>Figma</h3>
@@ -111,14 +124,14 @@
                             <span class="tag">设计工具</span>
                             <span class="tag">免费/付费</span>
                         </div>
-                        <a href="https://www.figma.com/" target="_blank" class="btn btn-secondary">了解更多</a>
+                        <a href="#software-modal" class="btn btn-secondary" data-software="figma">了解更多</a>
                     </div>
                 </div>
 
                 <!-- 软件卡片 6 -->
-                <div class="software-card">
+                <div class="software-card" data-category="娱乐">
                     <div class="software-img">
-                        <img src="https://via.placeholder.com/300x200?text=Spotify" alt="Spotify">
+                        <img src="https://placehold.co/300x200?text=Spotify" alt="Spotify" loading="lazy">
                     </div>
                     <div class="software-info">
                         <h3>Spotify</h3>
@@ -127,7 +140,7 @@
                             <span class="tag">娱乐</span>
                             <span class="tag">免费/付费</span>
                         </div>
-                        <a href="https://www.spotify.com/" target="_blank" class="btn btn-secondary">了解更多</a>
+                        <a href="#software-modal" class="btn btn-secondary" data-software="spotify">了解更多</a>
                     </div>
                 </div>
             </div>
@@ -140,7 +153,7 @@
             <h2>关于我</h2>
             <div class="about-content">
                 <div class="about-img">
-                    <img src="https://via.placeholder.com/200x200?text=Profile" alt="个人头像">
+                    <img src="img/user.png" alt="个人头像" loading="lazy">
                 </div>
                 <div class="about-text">
                     <p>大家好！我是一名软件爱好者，喜欢收集和分享各种实用的软件工具。这个网站是我精心整理的常用软件合集，希望能帮助到需要的人。</p>
@@ -156,6 +169,37 @@
             <p>&copy; 2025 常用软件分享. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- 软件详情模态框 -->
+    <div id="software-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-body">
+                <div class="modal-img">
+                    <img id="modal-software-img" src="" alt="软件图片">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modal-software-title">软件名称</h2>
+                    <div id="modal-software-tags" class="software-tags"></div>
+                    <div id="modal-software-description">
+                        <h3>软件介绍</h3>
+                        <p>软件的详细描述将在这里显示...</p>
+                    </div>
+                    <div id="modal-software-features">
+                        <h3>主要功能</h3>
+                        <ul>
+                            <li>功能1</li>
+                            <li>功能2</li>
+                            <li>功能3</li>
+                        </ul>
+                    </div>
+                    <div id="modal-software-link">
+                        <a href="" target="_blank" class="btn">访问官网</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

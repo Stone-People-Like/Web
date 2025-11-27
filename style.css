@@ -1,4 +1,4 @@
-/* 重置样式 */
+﻿/* 重置样式 */
 * {
     margin: 0;
     padding: 0;
@@ -7,10 +7,15 @@
 
 /* 基础设置 */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Hiragino Sans GB', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
     line-height: 1.6;
     color: #333;
     background-color: #f5f5f5;
+}
+
+/* 为所有主要元素设置中文字体 */
+h1, h2, h3, h4, h5, h6, p, a, li, span, div {
+    font-family: inherit !important;
 }
 
 .container {
@@ -65,11 +70,14 @@ body {
 
 /* 英雄区域 */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x1080?text=Hero+Background') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1920x1080?text=Hero+Background') no-repeat center center/cover;
     color: #fff;
     text-align: center;
     padding: 150px 0 100px;
     margin-top: 70px;
+    display: flex;
+    align-items: center;
+    min-height: 80vh;
 }
 
 .hero h2 {
@@ -120,8 +128,45 @@ body {
 .software-section h2 {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     color: #333;
+}
+
+/* 分类筛选按钮样式 */
+.category-filter {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 3rem;
+}
+
+.filter-btn {
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.filter-btn:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background-color: #4CAF50;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.filter-btn.active:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
 }
 
 .software-grid {
@@ -301,5 +346,143 @@ body {
     .software-section,
     .about-section {
         padding: 60px 0;
+    }
+}
+
+/* 模态框样式 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    overflow: auto;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5%;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 1000px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.modal-img {
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.modal-img img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.modal-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.modal-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.modal-info h3 {
+    font-size: 1.3rem;
+    margin: 1.5rem 0 1rem;
+    color: #333;
+}
+
+.modal-info p {
+    margin-bottom: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+.modal-info ul {
+    margin-left: 20px;
+    margin-bottom: 1.5rem;
+}
+
+.modal-info li {
+    margin-bottom: 0.5rem;
+    color: #666;
+}
+
+.modal-info .btn {
+    margin-top: 1rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+    
+    .modal-body {
+        flex-direction: column;
+    }
+    
+    .modal-img,
+    .modal-info {
+        max-width: 100%;
+    }
+    
+    .modal-info h2 {
+        font-size: 1.8rem;
     }
 }
