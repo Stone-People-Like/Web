@@ -8,6 +8,11 @@
     <link rel="icon" href="img/user.png" type="image/png">
 </head>
 <body>
+    <!-- 页面加载动画 -->
+    <div class="page-loader" id="page-loader">
+        <div class="loading-spinner"></div>
+    </div>
+    
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="container">
@@ -23,19 +28,19 @@
     <!-- 英雄区域 -->
     <section id="home" class="hero">
         <div class="container">
-            <h2>常用软件分享</h2>
-            <p>精心挑选的实用软件，提高你的工作效率和生活质量</p>
-            <a href="#software" class="btn">查看软件</a>
+            <h2 class="fade-in">常用软件分享</h2>
+            <p class="fade-in">精心挑选的实用软件，提高你的工作效率和生活质量</p>
+            <a href="#software" class="btn fade-in">查看软件</a>
         </div>
     </section>
 
     <!-- 软件展示区域 -->
     <section id="software" class="software-section">
         <div class="container">
-            <h2>推荐软件</h2>
+            <h2 class="fade-in">推荐软件</h2>
             
             <!-- 分类筛选按钮 -->
-            <div class="category-filter">
+            <div class="category-filter fade-in">
                 <button class="filter-btn active" data-category="all">全部</button>
                 <button class="filter-btn" data-category="开发工具">开发工具</button>
                 <button class="filter-btn" data-category="浏览器">浏览器</button>
@@ -47,7 +52,7 @@
             
             <div class="software-grid">
                 <!-- 软件卡片 1 -->
-                <div class="software-card" data-category="开发工具">
+                <div class="software-card fade-in" data-category="开发工具">
                     <div class="software-img">
                         <img src="img/vscode.png" alt="Visual Studio Code" loading="lazy">
                     </div>
@@ -64,7 +69,7 @@
                 </div>
 
                 <!-- 软件卡片 2 -->
-                <div class="software-card" data-category="浏览器">
+                <div class="software-card fade-in" data-category="浏览器">
                     <div class="software-img">
                         <img src="img/Chorm.webp" alt="Google Chrome" loading="lazy">
                     </div>
@@ -80,7 +85,7 @@
                 </div>
 
                 <!-- 软件卡片 3 -->
-                <div class="software-card" data-category="效率工具">
+                <div class="software-card fade-in" data-category="效率工具">
                     <div class="software-img">
                         <img src="https://placehold.co/300x200?text=Notion" alt="Notion" loading="lazy">
                     </div>
@@ -96,7 +101,7 @@
                 </div>
 
                 <!-- 软件卡片 4 -->
-                <div class="software-card" data-category="多媒体">
+                <div class="software-card fade-in" data-category="多媒体">
                     <div class="software-img">
                         <img src="https://placehold.co/300x200?text=OBS" alt="OBS Studio" loading="lazy">
                     </div>
@@ -113,7 +118,7 @@
                 </div>
 
                 <!-- 软件卡片 5 -->
-                <div class="software-card" data-category="设计工具">
+                <div class="software-card fade-in" data-category="设计工具">
                     <div class="software-img">
                         <img src="https://placehold.co/300x200?text=Figma" alt="Figma" loading="lazy">
                     </div>
@@ -129,7 +134,7 @@
                 </div>
 
                 <!-- 软件卡片 6 -->
-                <div class="software-card" data-category="娱乐">
+                <div class="software-card fade-in" data-category="娱乐">
                     <div class="software-img">
                         <img src="https://placehold.co/300x200?text=Spotify" alt="Spotify" loading="lazy">
                     </div>
@@ -150,12 +155,12 @@
     <!-- 关于我区域 -->
     <section id="about" class="about-section">
         <div class="container">
-            <h2>关于我</h2>
+            <h2 class="fade-in">关于我</h2>
             <div class="about-content">
-                <div class="about-img">
+                <div class="about-img fade-in-left">
                     <img src="img/user.png" alt="个人头像" loading="lazy">
                 </div>
-                <div class="about-text">
+                <div class="about-text fade-in-right">
                     <p>大家好！我是一名软件爱好者，喜欢收集和分享各种实用的软件工具。这个网站是我精心整理的常用软件合集，希望能帮助到需要的人。</p>
                     <p>我会定期更新这个网站，添加更多优质的软件推荐。如果有任何建议或问题，欢迎随时联系我。</p>
                 </div>

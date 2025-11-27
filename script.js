@@ -1,5 +1,11 @@
 // Modal functionality with dynamic content
 window.addEventListener('load', function() {
+    // Hide page loader when page is fully loaded
+    var pageLoader = document.getElementById('page-loader');
+    if (pageLoader) {
+        pageLoader.classList.add('hidden');
+    }
+    
     // Get modal elements
     var modal = document.getElementById('software-modal');
     var closeBtn = document.querySelector('.close-btn');
@@ -71,4 +77,25 @@ window.addEventListener('load', function() {
             modal.classList.remove('active');
         }
     });
+    
+    // Scroll animation functionality
+    function handleScrollAnimation() {
+        var animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
+        
+        for (var i = 0; i < animatedElements.length; i++) {
+            var element = animatedElements[i];
+            var elementTop = element.getBoundingClientRect().top;
+            var elementVisible = 150;
+            
+            if (elementTop < window.innerHeight - elementVisible) {
+                element.classList.add('visible');
+            }
+        }
+    }
+    
+    // Initial check on page load
+    handleScrollAnimation();
+    
+    // Check on scroll
+    window.addEventListener('scroll', handleScrollAnimation);
 });
