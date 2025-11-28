@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分类管理</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/user.png" type="image/png">
+    <style>
+        /* 分类管理页面样式 */
+        .categories-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 80px;
+        }
+
+        .categories-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .categories-header h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        /* 按钮组样式 */
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* 分类树样式 */
+        .category-tree {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .category-item {
+            margin-bottom: 10px;
+        }
+
+        .category-node {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+        }
+
+        .category-node:hover {
+            background-color: #e8f5e8;
+            border-color: #4CAF50;
+            transform: translateX(5px);
+        }
+
+        .category-node.selected {
+            background-color: #4CAF50;
+            color: #fff;
+            border-color: #4CAF50;
+        }
+
+        .category-info {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-name {
+            font-weight: 500;
+        }
+
+        .category-actions {
+            display: flex;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .category-node:hover .category-actions {
+            opacity: 1;
+        }
+
+        .category-actions button {
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit {
+            background-color: #2196F3;
+            color: #fff;
+        }
+
+        .btn-delete {
+            background-color: #f44336;
+            color: #fff;
+        }
+
+        .btn-edit:hover {
+            background-color: #0b7dda;
+        }
+
+        .btn-delete:hover {
+            background-color: #da190b;
+        }
+
+        /* 子分类缩进 */
+        .category-children {
+            margin-left: 30px;
+            margin-top: 10px;
+        }
+
+        /* 表单样式 */
+        .category-form {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        /* 批量操作样式 */
+        .bulk-actions {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .bulk-actions select,
+        .bulk-actions button {
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+            font-size: 1rem;
+        }
+
+        /* 拖拽样式 */
+        .category-node.dragging {
+            opacity: 0.5;
+            transform: rotate(5deg);
+        }
+
+        .category-node.drag-over {
+            border: 2px dashed #4CAF50;
+            background-color: #e8f5e8;
+        }
+
+        /* 提示信息样式 */
+        .message {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .message.success {
+            background-color: #e8f5e8;
+            color: #4CAF50;
+            border: 1px solid #c8e6c9;
+        }
+
+        .message.error {
+            background-color: #ffebee;
+            color: #f44336;
+            border: 1px solid #ffcdd2;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .categories-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .btn-group {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .btn-group button {
+                flex: 1;
+                min-width: 120px;
+            }
+
+            .category-node {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .category-actions {
+                opacity: 1;
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .bulk-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="page-loader" id="page-loader">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">软件分享</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#software">软件列表</a></li>
+                <li><a href="categories.html">分类管理</a></li>
+                <li><a href="index.html#about">关于我</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 分类管理容器 -->
+    <div class="categories-container">
+        <!-- 分类管理标题和操作按钮 -->
+        <div class="categories-header">
+            <h1>分类管理</h1>
+            <div class="btn-group">
+                <button class="btn" id="btn-add-category">添加分类</button>
+                <button class="btn btn-secondary" id="btn-refresh">刷新列表</button>
+            </div>
+        </div>
+
+        <!-- 批量操作 -->
+        <div class="bulk-actions">
+            <select id="bulk-action">
+                <option value="">批量操作</option>
+                <option value="delete">删除选中</option>
+                <option value="move">移动到</option>
+                <option value="sort">重新排序</option>
+            </select>
+            <button class="btn" id="btn-apply-bulk">应用</button>
+            <span id="selected-count">已选择: 0</span>
+        </div>
+
+        <!-- 提示信息 -->
+        <div id="message" class="message" style="display: none;"></div>
+
+        <!-- 分类树 -->
+        <div class="category-tree">
+            <h2>分类列表</h2>
+            <div id="category-tree-container"></div>
+        </div>
+
+        <!-- 分类表单 -->
+        <div class="category-form">
+            <h2 id="form-title">添加分类</h2>
+            <form id="category-form">
+                <input type="hidden" id="category-id" name="id">
+                
+                <div class="form-group">
+                    <label for="category-name">分类名称 *</label>
+                    <input type="text" id="category-name" name="name" placeholder="请输入分类名称" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="parent-category">父分类</label>
+                    <select id="parent-category" name="parentId">
+                        <option value="0">无父分类</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="category-sort">排序权重</label>
+                    <input type="number" id="category-sort" name="sort" value="0" placeholder="数字越大，排序越靠前">
+                </div>
+
+                <div class="form-group">
+                    <label for="category-status">状态</label>
+                    <select id="category-status" name="status">
+                        <option value="1">启用</option>
+                        <option value="0">禁用</option>
+                    </select>
+                </div>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn">保存</button>
+                    <button type="button" class="btn btn-secondary" id="btn-cancel">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 常用软件分享. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="categories.js"></script>
+</body>
+</html>
