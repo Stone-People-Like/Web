@@ -26,7 +26,7 @@
   {
     "id": "notion",
     "name": "Notion",
-    "category": "效率工具",
+    "category": "办公",
     "payment": "免费/付费",
     "tags": ["效率工具", "知识库"],
     "desc": "集笔记、数据库、项目管理于一体的全能工作空间。",
@@ -38,7 +38,7 @@
   {
     "id": "obs",
     "name": "OBS Studio",
-    "category": "多媒体",
+    "category": "优化工具",
     "payment": "免费",
     "tags": ["多媒体", "开源"],
     "desc": "开源直播与录屏软件，支持高质量录制和多场景配置。",
@@ -49,7 +49,7 @@
   {
     "id": "figma",
     "name": "Figma",
-    "category": "设计工具",
+    "category": "办公",
     "payment": "免费/付费",
     "tags": ["设计工具", "协作"],
     "desc": "云端协作设计工具，适合 UI/UX 设计与原型制作。",
@@ -60,7 +60,7 @@
   {
     "id": "spotify",
     "name": "Spotify",
-    "category": "娱乐",
+    "category": "系统工具",
     "payment": "免费/付费",
     "tags": ["娱乐", "音乐"],
     "desc": "主流音乐流媒体服务，提供个性化推荐与海量曲库。",

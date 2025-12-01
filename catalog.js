@@ -8,8 +8,8 @@ window.addEventListener('load', function() {
   var modalFeatures = document.querySelector('#modal-software-features ul')
   var modalLink = document.querySelector('#modal-software-link a')
   var grid = document.getElementById('software-grid')
+  var categoryTitle = document.querySelector('.main-content h2')
   var categoryFilter = document.getElementById('category-filter')
-  var resetBtn = document.getElementById('reset-btn')
 
   if (!grid || !categoryFilter) return
 
@@ -76,11 +76,9 @@ window.addEventListener('load', function() {
   }
 
   function buildCategories() {
-    var set = {}
-    tools.forEach(function(t) { set[t.category] = true })
-    categories = ['推荐', '全部'].concat(Object.keys(set))
+    categories = ['推荐', '全部', '系统工具', '办公', '优化工具']
     categoryFilter.innerHTML = ''
-    categories.forEach(function(c, idx) {
+    categories.forEach(function(c) {
       var btn = document.createElement('button')
       btn.className = 'filter-btn' + (c === '推荐' ? ' active' : '')
       btn.setAttribute('data-category', c)
@@ -99,6 +97,9 @@ window.addEventListener('load', function() {
   
 
   function applyFilters() {
+    if (categoryTitle) {
+      categoryTitle.textContent = activeCategory === '全部' ? '全部分类' : activeCategory
+    }
     var list = tools.filter(function(t) {
       var catMatch = false
       if (activeCategory === '推荐') {
@@ -115,14 +116,8 @@ window.addEventListener('load', function() {
 
   
 
-  resetBtn.addEventListener('click', function() {
-    var btns = categoryFilter.querySelectorAll('.filter-btn')
-    btns.forEach(function(b) { b.classList.remove('active') })
-    var first = categoryFilter.querySelector('.filter-btn')
-    if (first) first.classList.add('active')
-    activeCategory = '推荐'
-    applyFilters()
-  })
+  
+
 
   grid.addEventListener('click', function(e) {
     var target = e.target

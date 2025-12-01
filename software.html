@@ -28,15 +28,19 @@
     <!-- 软件展示区域 -->
     <section id="software" class="software-section" style="padding-top: 100px;">
         <div class="container">
-            <h2 class="fade-in">全部分类</h2>
-            
-            <!-- 筛选功能区 -->
-            <div class="filter-section fade-in">
-                <div class="filter-controls">
-                    <div id="category-filter" class="category-filter"></div>
-                </div>
+            <div class="software-layout">
+                <!-- 左侧筛选栏 -->
+                <aside class="sidebar fade-in">
+                    <h3>分类筛选</h3>
+                    <div id="category-filter" class="category-filter vertical"></div>
+                </aside>
+                
+                <!-- 右侧内容区 -->
+                <main class="main-content">
+                    <h2 class="fade-in">全部分类</h2>
+                    <div id="software-grid" class="software-grid"></div>
+                </main>
             </div>
-            <div id="software-grid" class="software-grid"></div>
         </div>
     </section>
 

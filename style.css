@@ -263,6 +263,12 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
     flex: 1 1 auto;
 }
 
+.category-filter.vertical {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
 .filter-btn {
     background-color: #f0f0f0;
     color: #333;
@@ -278,6 +284,24 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
     position: relative;
     overflow: hidden;
     will-change: transform, box-shadow, background-color;
+}
+
+.category-filter.vertical .filter-btn {
+    text-align: left;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.category-filter.vertical .filter-btn:hover {
+    transform: translateX(5px);
+}
+
+.category-filter.vertical .filter-btn.active {
+    background-color: #4CAF50;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
 }
 
 .filter-btn::before {
@@ -341,6 +365,77 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
     align-items: flex-start;
 }
 
+/* 侧边栏布局样式 */
+.software-layout {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.sidebar {
+    flex: 0 0 250px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 100px;
+}
+
+.sidebar h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.main-content h2 {
+    margin-bottom: 30px;
+    text-align: left;
+    font-size: 2rem;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .software-layout {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        flex: none;
+        width: 100%;
+        position: static;
+        margin-bottom: 30px;
+    }
+    
+    .category-filter.vertical {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .category-filter.vertical .filter-btn {
+        width: auto;
+        flex: 1 1 auto;
+        text-align: center;
+        padding: 8px 15px;
+        border-radius: 20px;
+        margin-bottom: 0;
+    }
+    
+    .category-filter.vertical .filter-btn:hover {
+        transform: translateY(-2px);
+    }
+    
+    .main-content h2 {
+        text-align: center;
+    }
+}
+
+/* 搜索框样式 */
 @media (min-width: 768px) {
     .filter-controls {
         flex-direction: row;
