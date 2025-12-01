@@ -31,29 +31,24 @@ window.addEventListener('load', function() {
                     modalTitle.textContent = 'Visual Studio Code';
                     break;
                 case 'chrome':
-                    modalImg.src = 'img/Chorm.webp';
+                    modalImg.src = 'img/chrome.png';
                     modalImg.alt = 'Google Chrome';
                     modalTitle.textContent = 'Google Chrome';
                     break;
-                case 'notion':
-                    modalImg.src = 'https://placehold.co/300x200?text=Notion';
-                    modalImg.alt = 'Notion';
-                    modalTitle.textContent = 'Notion';
+                case 'wps':
+                    modalImg.src = 'img/wps.png';
+                    modalImg.alt = 'WPS Office';
+                    modalTitle.textContent = 'WPS Office';
                     break;
-                case 'obs':
-                    modalImg.src = 'https://placehold.co/300x200?text=OBS';
-                    modalImg.alt = 'OBS Studio';
-                    modalTitle.textContent = 'OBS Studio';
+                case 'dism':
+                    modalImg.src = 'img/dism.webp';
+                    modalImg.alt = 'Dism++';
+                    modalTitle.textContent = 'Dism++';
                     break;
-                case 'figma':
-                    modalImg.src = 'https://placehold.co/300x200?text=Figma';
-                    modalImg.alt = 'Figma';
-                    modalTitle.textContent = 'Figma';
-                    break;
-                case 'spotify':
-                    modalImg.src = 'https://placehold.co/300x200?text=Spotify';
-                    modalImg.alt = 'Spotify';
-                    modalTitle.textContent = 'Spotify';
+                case 'idm':
+                    modalImg.src = 'img/IDM.jpg';
+                    modalImg.alt = 'Internet Download Manager';
+                    modalTitle.textContent = 'Internet Download Manager';
                     break;
                 default:
                     modalImg.src = 'https://placehold.co/300x200?text=Software';

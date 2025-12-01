@@ -29,7 +29,7 @@ window.addEventListener('load', function() {
 
   function createCard(item) {
     var card = document.createElement('div')
-    card.className = 'software-card fade-in'
+    card.className = 'software-card'
     card.setAttribute('data-category', item.category)
     var imgBox = document.createElement('div')
     imgBox.className = 'software-img'
@@ -66,13 +66,6 @@ window.addEventListener('load', function() {
     list.forEach(function(item) {
       grid.appendChild(createCard(item))
     })
-    var els = grid.querySelectorAll('.fade-in')
-    for (var i = 0; i < els.length; i++) {
-      requestAnimationFrame(function() {
-        var e = els[i]
-        if (e) e.classList.add('visible')
-      })
-    }
   }
 
   function buildCategories() {
