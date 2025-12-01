@@ -69,7 +69,7 @@ window.addEventListener('load', function() {
   }
 
   function buildCategories() {
-    categories = ['推荐', '全部', '系统工具', '办公', '优化工具', '娱乐工具']
+    categories = ['推荐', '全部', '系统工具', '办公工具', '优化工具', '娱乐工具']
     categoryFilter.innerHTML = ''
     categories.forEach(function(c) {
       var btn = document.createElement('button')

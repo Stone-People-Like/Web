@@ -60,6 +60,11 @@ window.addEventListener('load', function() {
                     modalImg.alt = 'HBuilderX';
                     modalTitle.textContent = 'HBuilderX';
                     break;
+                case 'visual-studio':
+                    modalImg.src = 'img/VisualStudio.png';
+                    modalImg.alt = 'Visual Studio';
+                    modalTitle.textContent = 'Visual Studio';
+                    break;
                 case 'dism':
                     modalImg.src = 'img/dism.webp';
                     modalImg.alt = 'Dism++';

@@ -2,7 +2,7 @@
   {
     "id": "vscode",
     "name": "Visual Studio Code",
-    "category": "开发工具",
+    "category": "办公工具",
     "payment": "免费",
     "tags": ["开发工具", "免费", "开源"],
     "desc": "轻量但强大的代码编辑器，丰富扩展生态，适合多语言开发。",
@@ -26,7 +26,7 @@
   {
     "id": "wps",
     "name": "WPS Office",
-    "category": "办公",
+    "category": "办公工具",
     "payment": "免费/付费",
     "tags": ["办公软件", "文档处理"],
     "desc": "全能办公软件套件，兼容 Word、Excel、PPT 等多种格式，支持云端协作。",
@@ -38,7 +38,7 @@
   {
     "id": "pycharm",
     "name": "PyCharm",
-    "category": "办公",
+    "category": "办公工具",
     "payment": "免费/付费",
     "tags": ["Python", "IDE", "开发"],
     "desc": "专为 Python 开发设计的智能集成开发环境，提供极致的编码体验。",
@@ -49,7 +49,7 @@
   {
     "id": "webstorm",
     "name": "WebStorm",
-    "category": "办公",
+    "category": "办公工具",
     "payment": "付费",
     "tags": ["JavaScript", "IDE", "前端"],
     "desc": "最智能的 JavaScript 集成开发环境，支持现代 Web 开发技术栈。",
@@ -60,7 +60,7 @@
   {
     "id": "typora",
     "name": "Typora",
-    "category": "办公",
+    "category": "办公工具",
     "payment": "付费",
     "tags": ["Markdown", "编辑器", "写作"],
     "desc": "所见即所得的 Markdown 编辑器，提供极致的沉浸式写作体验。",
@@ -72,13 +72,25 @@
   {
     "id": "hbuilder",
     "name": "HBuilderX",
-    "category": "办公",
+    "category": "办公工具",
     "payment": "免费",
     "tags": ["开发工具", "前端", "轻量"],
     "desc": "轻量级前端开发工具，内置强大的代码提示和快捷操作，支持多端发布。",
     "features": ["轻量极速", "多端发布", "uni-app"],
     "link": "https://www.dcloud.io/hbuilderx.html",
     "image": "img/hbuilder.png"
+  },
+  {
+    "id": "visual-studio",
+    "name": "Visual Studio",
+    "category": "办公工具",
+    "payment": "免费/付费",
+    "tags": ["IDE", "开发", "微软"],
+    "desc": "微软官方推出的集成开发环境，功能强大，支持多种编程语言。",
+    "features": ["全能IDE", "强大调试", "Azure集成"],
+    "link": "https://visualstudio.microsoft.com/",
+    "image": "img/VisualStudio.png",
+    "recommend": true
   },
   {
     "id": "dism",
