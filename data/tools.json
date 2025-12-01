@@ -156,5 +156,16 @@
     "features": ["大文件传输", "屏幕共享", "群组功能"],
     "link": "https://im.qq.com/",
     "image": "img/QQ.png"
+  },
+  {
+    "id": "netease-music",
+    "name": "网易云音乐",
+    "category": "娱乐工具",
+    "payment": "免费/付费",
+    "tags": ["音乐", "社区", "流媒体"],
+    "desc": "最受年轻用户喜爱的音乐平台，拥有独特的乐评氛围和个性化推荐。",
+    "features": ["个性推荐", "精彩乐评", "歌单广场"],
+    "link": "https://music.163.com/",
+    "image": "img/music.jpg"
   }
 ]

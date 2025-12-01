@@ -95,6 +95,11 @@ window.addEventListener('load', function() {
                     modalImg.alt = 'QQ';
                     modalTitle.textContent = 'QQ';
                     break;
+                case 'netease-music':
+                    modalImg.src = 'img/music.jpg';
+                    modalImg.alt = '网易云音乐';
+                    modalTitle.textContent = '网易云音乐';
+                    break;
                 default:
                     modalImg.src = 'https://placehold.co/300x200?text=Software';
                     modalImg.alt = 'Software';
