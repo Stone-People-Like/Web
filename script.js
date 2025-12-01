@@ -135,3 +135,34 @@ window.addEventListener('load', function() {
     window.addEventListener('scroll', handleScrollAnimation);
     
 });
+
+// Theme Toggle Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+    
+    // Check for saved user preference
+    const currentTheme = localStorage.getItem('theme');
+    
+    // If the user has a saved preference, apply it
+    if (currentTheme === 'dark') {
+        body.classList.add('dark-mode');
+        if (themeToggleBtn) themeToggleBtn.textContent = '☀️';
+    }
+    
+    // Add event listener to the toggle button
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', function() {
+            body.classList.toggle('dark-mode');
+            
+            // Update button text and save preference
+            if (body.classList.contains('dark-mode')) {
+                themeToggleBtn.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggleBtn.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
+});

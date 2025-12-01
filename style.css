@@ -51,6 +51,7 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
 .nav-links {
     display: flex;
     list-style: none;
+    align-items: center; /* 确保垂直居中 */
 }
 
 .nav-links li {
@@ -653,6 +654,7 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
         margin-top: 1rem;
         flex-direction: column;
         width: 100%;
+        align-items: flex-start;
     }
 
     .nav-links li {
@@ -896,23 +898,189 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
     border-width: 7px;
 }
 
-/* 响应式设计 */
-@media (max-width: 768px) {
-    .modal-content {
-        margin: 10% auto;
-        width: 95%;
-    }
-    
-    .modal-body {
-        flex-direction: column;
-    }
-    
-    .modal-img,
-    .modal-info {
-        max-width: 100%;
-    }
-    
-    .modal-info h2 {
-        font-size: 1.8rem;
-    }
+/* 深色模式样式 */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* 导航栏 */
+body.dark-mode .navbar {
+    background-color: #1f1f1f;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .nav-links a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .nav-links a:hover {
+    color: #4CAF50;
+}
+
+/* 英雄区域 */
+body.dark-mode .hero {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.9) 100%), url('img/bgimg.png') no-repeat center center/cover;
+}
+
+/* 软件展示区域 */
+body.dark-mode .software-section {
+    background-color: #121212;
+}
+
+body.dark-mode .software-section h2 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .sidebar {
+    background-color: #1e1e1e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .sidebar h3 {
+    color: #e0e0e0;
+    border-bottom-color: #333;
+}
+
+body.dark-mode .filter-btn {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+}
+
+body.dark-mode .filter-btn:hover {
+    background-color: #3d3d3d;
+}
+
+body.dark-mode .filter-btn.active {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+body.dark-mode .software-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .software-card:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .software-img img {
+    opacity: 0.9;
+}
+
+body.dark-mode .software-card:hover .software-img img {
+    opacity: 1;
+}
+
+body.dark-mode .software-info h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .software-info p {
+    color: #aaa;
+}
+
+body.dark-mode .tag {
+    background-color: #2d2d2d;
+    color: #ccc;
+}
+
+/* 关于我区域 */
+body.dark-mode .about-section {
+    background-color: #121212;
+}
+
+body.dark-mode .about-section h2 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .about-text p {
+    color: #aaa;
+}
+
+body.dark-mode .about-img img {
+    border-color: #1e1e1e;
+}
+
+/* 页脚 */
+body.dark-mode .footer {
+    background-color: #1f1f1f;
+    color: #aaa;
+}
+
+/* 模态框 */
+body.dark-mode .modal-content {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+body.dark-mode .modal-info h2,
+body.dark-mode .modal-info h3 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .modal-info p,
+body.dark-mode .modal-info li {
+    color: #aaa;
+}
+
+body.dark-mode .close-btn:hover {
+    color: #fff;
+}
+
+/* 搜索框 */
+body.dark-mode .search-box input {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+body.dark-mode .search-box input:focus {
+    border-color: #4CAF50;
+}
+
+body.dark-mode .search-suggestions {
+    background-color: #2d2d2d;
+    border-color: #444;
+}
+
+body.dark-mode .search-suggestion-item {
+    color: #e0e0e0;
+}
+
+body.dark-mode .search-suggestion-item:hover {
+    background-color: #3d3d3d;
+}
+
+/* 页面加载器深色模式 */
+body.dark-mode .page-loader {
+    background-color: #121212;
+}
+
+body.dark-mode .loading-spinner {
+    border-color: #333;
+    border-top-color: #4CAF50;
+}
+
+/* 主题切换按钮 */
+.theme-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 8px;
+    color: #fff;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-btn:hover {
+    transform: rotate(15deg) scale(1.1);
+}
+
+body.dark-mode .theme-btn {
+    color: #e0e0e0;
 }
