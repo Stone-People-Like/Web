@@ -40,6 +40,26 @@ window.addEventListener('load', function() {
                     modalImg.alt = 'WPS Office';
                     modalTitle.textContent = 'WPS Office';
                     break;
+                case 'pycharm':
+                    modalImg.src = 'img/pycharm.jpg';
+                    modalImg.alt = 'PyCharm';
+                    modalTitle.textContent = 'PyCharm';
+                    break;
+                case 'webstorm':
+                    modalImg.src = 'img/webstrom.jpg';
+                    modalImg.alt = 'WebStorm';
+                    modalTitle.textContent = 'WebStorm';
+                    break;
+                case 'typora':
+                    modalImg.src = 'img/typora.jpg';
+                    modalImg.alt = 'Typora';
+                    modalTitle.textContent = 'Typora';
+                    break;
+                case 'hbuilder':
+                    modalImg.src = 'img/hbuilder.png';
+                    modalImg.alt = 'HBuilderX';
+                    modalTitle.textContent = 'HBuilderX';
+                    break;
                 case 'dism':
                     modalImg.src = 'img/dism.webp';
                     modalImg.alt = 'Dism++';
@@ -49,6 +69,16 @@ window.addEventListener('load', function() {
                     modalImg.src = 'img/IDM.jpg';
                     modalImg.alt = 'Internet Download Manager';
                     modalTitle.textContent = 'Internet Download Manager';
+                    break;
+                case 'geek':
+                    modalImg.src = 'img/GEEK.jpg';
+                    modalImg.alt = 'Geek Uninstaller';
+                    modalTitle.textContent = 'Geek Uninstaller';
+                    break;
+                case 'clash-verge':
+                    modalImg.src = 'img/ClashVerge.jpg';
+                    modalImg.alt = 'Clash Verge';
+                    modalTitle.textContent = 'Clash Verge';
                     break;
                 default:
                     modalImg.src = 'https://placehold.co/300x200?text=Software';

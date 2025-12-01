@@ -36,6 +36,51 @@
     "recommend": true
   },
   {
+    "id": "pycharm",
+    "name": "PyCharm",
+    "category": "办公",
+    "payment": "免费/付费",
+    "tags": ["Python", "IDE", "开发"],
+    "desc": "专为 Python 开发设计的智能集成开发环境，提供极致的编码体验。",
+    "features": ["智能补全", "代码调试", "Web开发"],
+    "link": "https://www.jetbrains.com/pycharm/",
+    "image": "img/pycharm.jpg"
+  },
+  {
+    "id": "webstorm",
+    "name": "WebStorm",
+    "category": "办公",
+    "payment": "付费",
+    "tags": ["JavaScript", "IDE", "前端"],
+    "desc": "最智能的 JavaScript 集成开发环境，支持现代 Web 开发技术栈。",
+    "features": ["智能提示", "代码重构", "调试集成"],
+    "link": "https://www.jetbrains.com/webstorm/",
+    "image": "img/webstrom.jpg"
+  },
+  {
+    "id": "typora",
+    "name": "Typora",
+    "category": "办公",
+    "payment": "付费",
+    "tags": ["Markdown", "编辑器", "写作"],
+    "desc": "所见即所得的 Markdown 编辑器，提供极致的沉浸式写作体验。",
+    "features": ["所见即所得", "数学公式", "图表支持"],
+    "link": "https://typora.io/",
+    "image": "img/typora.jpg",
+    "recommend": true
+  },
+  {
+    "id": "hbuilder",
+    "name": "HBuilderX",
+    "category": "办公",
+    "payment": "免费",
+    "tags": ["开发工具", "前端", "轻量"],
+    "desc": "轻量级前端开发工具，内置强大的代码提示和快捷操作，支持多端发布。",
+    "features": ["轻量极速", "多端发布", "uni-app"],
+    "link": "https://www.dcloud.io/hbuilderx.html",
+    "image": "img/hbuilder.png"
+  },
+  {
     "id": "dism",
     "name": "Dism++",
     "category": "优化工具",
@@ -56,5 +101,27 @@
     "features": ["5倍加速", "媒体嗅探", "浏览器集成"],
     "link": "https://www.internetdownloadmanager.com/",
     "image": "img/IDM.jpg"
+  },
+  {
+    "id": "geek",
+    "name": "Geek Uninstaller",
+    "category": "系统工具",
+    "payment": "免费",
+    "tags": ["卸载", "清理", "工具"],
+    "desc": "轻量级强力卸载工具，能够彻底清除软件残留文件和注册表项。",
+    "features": ["强制删除", "注册表清理", "无需安装"],
+    "link": "https://geekuninstaller.com/",
+    "image": "img/GEEK.jpg"
+  },
+  {
+    "id": "clash-verge",
+    "name": "Clash Verge",
+    "category": "系统工具",
+    "payment": "免费",
+    "tags": ["网络", "代理", "工具"],
+    "desc": "基于 Tauri 的 Clash 跨平台 GUI 客户端，界面现代，功能强大。",
+    "features": ["规则分流", "脚本支持", "跨平台"],
+    "link": "https://github.com/clash-verge-rev/clash-verge-rev",
+    "image": "img/ClashVerge.jpg"
   }
 ]
