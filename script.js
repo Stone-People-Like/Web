@@ -71,7 +71,7 @@ window.addEventListener('load', function() {
                     modalTitle.textContent = 'Windows超级管理器';
                     break;
                 case 'context-menu':
-                    modalImg.src = 'img/ContextMenuManager.jpg';
+                    modalImg.src = 'img/ContextMenuManager.png';
                     modalImg.alt = 'Context Menu Manager';
                     modalTitle.textContent = 'Context Menu Manager';
                     break;

@@ -111,7 +111,7 @@
     "desc": "纯粹的Windows右键菜单管理工具，可以轻松启用或禁用文件、文件夹等右键菜单项目。",
     "features": ["菜单管理", "清理右键", "开源免费"],
     "link": "https://github.com/BluePointLilac/ContextMenuManager",
-    "image": "img/ContextMenuManager.jpg"
+    "image": "img/ContextMenuManager.png"
   },
   {
     "id": "idm",
