@@ -123,5 +123,38 @@
     "features": ["规则分流", "脚本支持", "跨平台"],
     "link": "https://github.com/clash-verge-rev/clash-verge-rev",
     "image": "img/ClashVerge.jpg"
+  },
+  {
+    "id": "steam",
+    "name": "Steam",
+    "category": "娱乐工具",
+    "payment": "免费",
+    "tags": ["游戏", "娱乐", "平台"],
+    "desc": "全球最大的综合性数字发行平台，提供海量游戏购买、下载与社区交流。",
+    "features": ["海量游戏", "社区互动", "云存档"],
+    "link": "https://store.steampowered.com/",
+    "image": "img/steam.jpg"
+  },
+  {
+    "id": "wechat",
+    "name": "微信",
+    "category": "娱乐工具",
+    "payment": "免费",
+    "tags": ["社交", "通讯", "生活"],
+    "desc": "国民级通讯工具，连接全球十亿用户，支持即时通讯、支付、小程序等。",
+    "features": ["即时通讯", "文件传输", "小程序"],
+    "link": "https://weixin.qq.com/",
+    "image": "img/wechat.png"
+  },
+  {
+    "id": "qq",
+    "name": "QQ",
+    "category": "娱乐工具",
+    "payment": "免费",
+    "tags": ["社交", "通讯", "办公"],
+    "desc": "不仅是即时通讯工具，更提供群组、文件传输、远程控制等丰富功能。",
+    "features": ["大文件传输", "屏幕共享", "群组功能"],
+    "link": "https://im.qq.com/",
+    "image": "img/QQ.png"
   }
 ]

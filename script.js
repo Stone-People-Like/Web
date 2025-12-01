@@ -80,6 +80,21 @@ window.addEventListener('load', function() {
                     modalImg.alt = 'Clash Verge';
                     modalTitle.textContent = 'Clash Verge';
                     break;
+                case 'steam':
+                    modalImg.src = 'img/steam.jpg';
+                    modalImg.alt = 'Steam';
+                    modalTitle.textContent = 'Steam';
+                    break;
+                case 'wechat':
+                    modalImg.src = 'img/wechat.png';
+                    modalImg.alt = '微信';
+                    modalTitle.textContent = '微信';
+                    break;
+                case 'qq':
+                    modalImg.src = 'img/QQ.png';
+                    modalImg.alt = 'QQ';
+                    modalTitle.textContent = 'QQ';
+                    break;
                 default:
                     modalImg.src = 'https://placehold.co/300x200?text=Software';
                     modalImg.alt = 'Software';
