@@ -93,6 +93,29 @@
     "recommend": true
   },
   {
+    "id": "trae",
+    "name": "Trae",
+    "category": "办公工具",
+    "payment": "免费",
+    "tags": ["AI", "IDE", "开发"],
+    "desc": "字节跳动推出的 AI 驱动的集成开发环境，集成 GPT-4o 和 Claude-3.5-Sonnet，提升编码效率。",
+    "features": ["智能代码补全", "AI 编程助手", "VS Code 插件兼容"],
+    "link": "https://trae.ai/",
+    "image": "img/trae.jpg",
+    "recommend": true
+  },
+  {
+    "id": "xshell",
+    "name": "Xshell 8",
+    "category": "办公工具",
+    "payment": "免费/付费",
+    "tags": ["SSH", "终端", "运维"],
+    "desc": "业界最强大的终端模拟器，支持SSH、SFTP、TELNET等协议，提供标签式管理和强大的脚本支持。",
+    "features": ["多标签管理", "脚本支持", "会话管理"],
+    "link": "https://www.netsarang.com/en/xshell/",
+    "image": "img/xshell.jpg"
+  },
+  {
     "id": "dism",
     "name": "Dism++",
     "category": "优化工具",
@@ -203,6 +226,28 @@
     "image": "img/Snipaste.png"
   },
   {
+    "id": "potplayer",
+    "name": "PotPlayer",
+    "category": "系统工具",
+    "payment": "免费",
+    "tags": ["播放器", "视频", "音频"],
+    "desc": "功能强大的多媒体播放器，支持几乎所有音视频格式，启动速度快，资源占用低。",
+    "features": ["全能解码", "硬件加速", "高度定制"],
+    "link": "http://potplayer.daum.net/",
+    "image": "img/PotPlayer.jpg"
+  },
+  {
+    "id": "uuyc",
+    "name": "UU远程",
+    "category": "系统工具",
+    "payment": "免费",
+    "tags": ["远程控制", "网易", "办公"],
+    "desc": "网易出品的专业远程控制软件，支持4K 144帧、远程开机、文件传输。",
+    "features": ["4K 144帧", "远程开机", "文件传输"],
+    "link": "https://uuyc.163.com/",
+    "image": "img/uuyc.jpg"
+  },
+  {
     "id": "steam",
     "name": "Steam",
     "category": "娱乐工具",
@@ -278,5 +323,16 @@
     "features": ["短视频", "直播互动", "创意特效"],
     "link": "https://www.douyin.com/",
     "image": "img/tiktok.jpg"
+  },
+  {
+    "id": "mumu",
+    "name": "MuMu模拟器",
+    "category": "娱乐工具",
+    "payment": "免费",
+    "tags": ["模拟器", "安卓", "游戏"],
+    "desc": "网易出品的免费安卓模拟器，搭载安卓12内核，提供极致的性能和流畅的操作体验。",
+    "features": ["安卓12内核", "高帧率模式", "多开同步"],
+    "link": "https://mumu.163.com/",
+    "image": "img/mumu.jpg"
   }
 ]

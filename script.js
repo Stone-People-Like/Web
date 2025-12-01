@@ -65,6 +65,16 @@ window.addEventListener('load', function() {
                     modalImg.alt = 'Visual Studio';
                     modalTitle.textContent = 'Visual Studio';
                     break;
+                case 'trae':
+                    modalImg.src = 'img/trae.jpg';
+                    modalImg.alt = 'Trae';
+                    modalTitle.textContent = 'Trae';
+                    break;
+                case 'xshell':
+                    modalImg.src = 'img/xshell.jpg';
+                    modalImg.alt = 'Xshell 8';
+                    modalTitle.textContent = 'Xshell 8';
+                    break;
                 case 'dism':
                     modalImg.src = 'img/dism.webp';
                     modalImg.alt = 'Dism++';
@@ -115,6 +125,16 @@ window.addEventListener('load', function() {
                     modalImg.alt = 'Snipaste';
                     modalTitle.textContent = 'Snipaste';
                     break;
+                case 'potplayer':
+                    modalImg.src = 'img/PotPlayer.jpg';
+                    modalImg.alt = 'PotPlayer';
+                    modalTitle.textContent = 'PotPlayer';
+                    break;
+                case 'uuyc':
+                    modalImg.src = 'img/uuyc.jpg';
+                    modalImg.alt = 'UU远程';
+                    modalTitle.textContent = 'UU远程';
+                    break;
                 case 'steam':
                     modalImg.src = 'img/steam.jpg';
                     modalImg.alt = 'Steam';
@@ -149,6 +169,11 @@ window.addEventListener('load', function() {
                     modalImg.src = 'img/tiktok.jpg';
                     modalImg.alt = '抖音';
                     modalTitle.textContent = '抖音';
+                    break;
+                case 'mumu':
+                    modalImg.src = 'img/mumu.jpg';
+                    modalImg.alt = 'MuMu模拟器';
+                    modalTitle.textContent = 'MuMu模拟器';
                     break;
                 default:
                     modalImg.src = 'https://placehold.co/300x200?text=Software';
