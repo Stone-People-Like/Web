@@ -75,6 +75,11 @@ window.addEventListener('load', function() {
                     modalImg.alt = 'Context Menu Manager';
                     modalTitle.textContent = 'Context Menu Manager';
                     break;
+                case 'powertoys':
+                    modalImg.src = 'img/powertoys.jpg';
+                    modalImg.alt = 'Microsoft PowerToys';
+                    modalTitle.textContent = 'Microsoft PowerToys';
+                    break;
                 case 'idm':
                     modalImg.src = 'img/IDM.jpg';
                     modalImg.alt = 'Internet Download Manager';

@@ -114,6 +114,17 @@
     "image": "img/ContextMenuManager.png"
   },
   {
+    "id": "powertoys",
+    "name": "Microsoft PowerToys",
+    "category": "优化工具",
+    "payment": "免费",
+    "tags": ["系统工具", "效率", "微软"],
+    "desc": "微软官方出品的系统增强工具集，包含取色器、分屏、键盘映射等多种实用功能。",
+    "features": ["FancyZones", "PowerRename", "键盘映射"],
+    "link": "https://github.com/microsoft/PowerToys",
+    "image": "img/powertoys.jpg"
+  },
+  {
     "id": "idm",
     "name": "Internet Download Manager",
     "category": "系统工具",
