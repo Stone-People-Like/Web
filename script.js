@@ -15,176 +15,91 @@ window.addEventListener('load', function() {
     // Get all "Learn More" buttons
     var moreInfoBtns = document.querySelectorAll('.btn-secondary');
     
-    // Open modal when clicking "Learn More" buttons
-    for (var i = 0; i < moreInfoBtns.length; i++) {
-        moreInfoBtns[i].addEventListener('click', function(e) {
+    // Fetch tools data
+    var toolsData = [];
+    fetch('data/tools.json')
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            toolsData = data;
+        })
+        .catch(function(error) {
+            console.error('Error loading tools data:', error);
+        });
+
+    // Get modal additional elements
+    var modalTags = document.getElementById('modal-software-tags');
+    var modalDesc = document.querySelector('#modal-software-description p');
+    var modalFeatures = document.querySelector('#modal-software-features ul');
+    var modalLink = document.querySelector('#modal-software-link a');
+    
+    // Use Event Delegation for "Learn More" buttons to handle both static and dynamic elements
+    document.addEventListener('click', function(e) {
+        var target = e.target;
+        var btn = target.closest('.btn-secondary');
+        
+        if (btn) {
             e.preventDefault();
             
             // Get software ID
-            var softwareId = this.getAttribute('data-software');
+            var softwareId = btn.getAttribute('data-software');
             
-            // Update modal content based on software ID
-            switch(softwareId) {
-                case 'vscode':
-                    modalImg.src = 'img/vscode.png';
-                    modalImg.alt = 'Visual Studio Code';
-                    modalTitle.textContent = 'Visual Studio Code';
-                    break;
-                case 'chrome':
-                    modalImg.src = 'img/chrome.png';
-                    modalImg.alt = 'Google Chrome';
-                    modalTitle.textContent = 'Google Chrome';
-                    break;
-                case 'wps':
-                    modalImg.src = 'img/wps.png';
-                    modalImg.alt = 'WPS Office';
-                    modalTitle.textContent = 'WPS Office';
-                    break;
-                case 'pycharm':
-                    modalImg.src = 'img/pycharm.jpg';
-                    modalImg.alt = 'PyCharm';
-                    modalTitle.textContent = 'PyCharm';
-                    break;
-                case 'webstorm':
-                    modalImg.src = 'img/webstrom.jpg';
-                    modalImg.alt = 'WebStorm';
-                    modalTitle.textContent = 'WebStorm';
-                    break;
-                case 'typora':
-                    modalImg.src = 'img/typora.jpg';
-                    modalImg.alt = 'Typora';
-                    modalTitle.textContent = 'Typora';
-                    break;
-                case 'hbuilder':
-                    modalImg.src = 'img/hbuilder.png';
-                    modalImg.alt = 'HBuilderX';
-                    modalTitle.textContent = 'HBuilderX';
-                    break;
-                case 'visual-studio':
-                    modalImg.src = 'img/VisualStudio.png';
-                    modalImg.alt = 'Visual Studio';
-                    modalTitle.textContent = 'Visual Studio';
-                    break;
-                case 'trae':
-                    modalImg.src = 'img/trae.jpg';
-                    modalImg.alt = 'Trae';
-                    modalTitle.textContent = 'Trae';
-                    break;
-                case 'xshell':
-                    modalImg.src = 'img/xshell.jpg';
-                    modalImg.alt = 'Xshell 8';
-                    modalTitle.textContent = 'Xshell 8';
-                    break;
-                case 'dism':
-                    modalImg.src = 'img/dism.webp';
-                    modalImg.alt = 'Dism++';
-                    modalTitle.textContent = 'Dism++';
-                    break;
-                case 'windows-super':
-                    modalImg.src = 'img/Windowssuper.png';
-                    modalImg.alt = 'Windows超级管理器';
-                    modalTitle.textContent = 'Windows超级管理器';
-                    break;
-                case 'context-menu':
-                    modalImg.src = 'img/ContextMenuManager.png';
-                    modalImg.alt = 'Context Menu Manager';
-                    modalTitle.textContent = 'Context Menu Manager';
-                    break;
-                case 'powertoys':
-                    modalImg.src = 'img/powertoys.jpg';
-                    modalImg.alt = 'Microsoft PowerToys';
-                    modalTitle.textContent = 'Microsoft PowerToys';
-                    break;
-                case 'idm':
-                    modalImg.src = 'img/IDM.jpg';
-                    modalImg.alt = 'Internet Download Manager';
-                    modalTitle.textContent = 'Internet Download Manager';
-                    break;
-                case 'geek':
-                    modalImg.src = 'img/GEEK.jpg';
-                    modalImg.alt = 'Geek Uninstaller';
-                    modalTitle.textContent = 'Geek Uninstaller';
-                    break;
-                case 'clash-verge':
-                    modalImg.src = 'img/ClashVerge.jpg';
-                    modalImg.alt = 'Clash Verge';
-                    modalTitle.textContent = 'Clash Verge';
-                    break;
-                case 'winrar':
-                    modalImg.src = 'img/winrar.jpg';
-                    modalImg.alt = 'WinRAR';
-                    modalTitle.textContent = 'WinRAR';
-                    break;
-                case 'mem-reduct':
-                    modalImg.src = 'img/MemReduct.avif';
-                    modalImg.alt = 'Mem Reduct';
-                    modalTitle.textContent = 'Mem Reduct';
-                    break;
-                case 'snipaste':
-                    modalImg.src = 'img/Snipaste.png';
-                    modalImg.alt = 'Snipaste';
-                    modalTitle.textContent = 'Snipaste';
-                    break;
-                case 'potplayer':
-                    modalImg.src = 'img/PotPlayer.jpg';
-                    modalImg.alt = 'PotPlayer';
-                    modalTitle.textContent = 'PotPlayer';
-                    break;
-                case 'uuyc':
-                    modalImg.src = 'img/uuyc.jpg';
-                    modalImg.alt = 'UU远程';
-                    modalTitle.textContent = 'UU远程';
-                    break;
-                case 'steam':
-                    modalImg.src = 'img/steam.jpg';
-                    modalImg.alt = 'Steam';
-                    modalTitle.textContent = 'Steam';
-                    break;
-                case 'wechat':
-                    modalImg.src = 'img/wechat.png';
-                    modalImg.alt = '微信';
-                    modalTitle.textContent = '微信';
-                    break;
-                case 'qq':
-                    modalImg.src = 'img/QQ.png';
-                    modalImg.alt = 'QQ';
-                    modalTitle.textContent = 'QQ';
-                    break;
-                case 'netease-music':
-                    modalImg.src = 'img/163music.png';
-                    modalImg.alt = '网易云音乐';
-                    modalTitle.textContent = '网易云音乐';
-                    break;
-                case 'qq-music':
-                    modalImg.src = 'img/qqmusic.png';
-                    modalImg.alt = 'QQ音乐';
-                    modalTitle.textContent = 'QQ音乐';
-                    break;
-                case 'bilibili':
-                    modalImg.src = 'img/bilibili.png';
-                    modalImg.alt = '哔哩哔哩';
-                    modalTitle.textContent = '哔哩哔哩';
-                    break;
-                case 'douyin':
-                    modalImg.src = 'img/tiktok.jpg';
-                    modalImg.alt = '抖音';
-                    modalTitle.textContent = '抖音';
-                    break;
-                case 'mumu':
-                    modalImg.src = 'img/mumu.jpg';
-                    modalImg.alt = 'MuMu模拟器';
-                    modalTitle.textContent = 'MuMu模拟器';
-                    break;
-                default:
+            // Find software item in data
+            var item = toolsData.find(function(t) { return t.id === softwareId; });
+            
+            if (item) {
+                // Update modal content from data
+                if (modalImg) {
+                    modalImg.src = item.image;
+                    modalImg.alt = item.name;
+                }
+                if (modalTitle) modalTitle.textContent = item.name;
+                
+                // Update Tags
+                if (modalTags) {
+                    modalTags.innerHTML = '';
+                    var tags = [item.category, item.payment].concat(item.tags || []);
+                    tags.forEach(function(t) {
+                        var span = document.createElement('span');
+                        span.className = 'tag';
+                        span.textContent = t;
+                        modalTags.appendChild(span);
+                    });
+                }
+                
+                // Update Description
+                if (modalDesc) {
+                    modalDesc.textContent = item.desc;
+                }
+                
+                // Update Features
+                if (modalFeatures) {
+                    modalFeatures.innerHTML = '';
+                    (item.features || []).forEach(function(f) {
+                        var li = document.createElement('li');
+                        li.textContent = f;
+                        modalFeatures.appendChild(li);
+                    });
+                }
+                
+                // Update Link
+                if (modalLink) {
+                    modalLink.href = item.link || '#';
+                }
+            } else {
+                // Fallback if data not loaded or not found
+                if (modalImg) {
                     modalImg.src = 'https://placehold.co/300x200?text=Software';
                     modalImg.alt = 'Software';
-                    modalTitle.textContent = 'Software';
+                }
+                if (modalTitle) modalTitle.textContent = 'Software';
             }
             
             // Show modal
-            modal.classList.add('active');
-        });
-    }
+            if (modal) modal.classList.add('active');
+        }
+    });
     
     // Close modal when clicking close button
     closeBtn.addEventListener('click', function() {
