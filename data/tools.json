@@ -180,6 +180,17 @@
     "image": "img/MemReduct.avif"
   },
   {
+    "id": "snipaste",
+    "name": "Snipaste",
+    "category": "系统工具",
+    "payment": "免费",
+    "tags": ["截图", "贴图", "工具"],
+    "desc": "简单但强大的截图工具，支持截图、贴图以及多种标注功能。",
+    "features": ["屏幕截图", "贴图功能", "取色器"],
+    "link": "https://zh.snipaste.com/",
+    "image": "img/Snipaste.png"
+  },
+  {
     "id": "steam",
     "name": "Steam",
     "category": "娱乐工具",
@@ -221,6 +232,39 @@
     "desc": "最受年轻用户喜爱的音乐平台，拥有独特的乐评氛围和个性化推荐。",
     "features": ["个性推荐", "精彩乐评", "歌单广场"],
     "link": "https://music.163.com/",
-    "image": "img/music.jpg"
+    "image": "img/163music.png"
+  },
+  {
+    "id": "qq-music",
+    "name": "QQ音乐",
+    "category": "娱乐工具",
+    "payment": "免费/付费",
+    "tags": ["音乐", "娱乐", "流媒体"],
+    "desc": "腾讯推出的音乐播放平台，拥有海量正版乐库，提供极致的音乐体验。",
+    "features": ["海量曲库", "无损音质", "听歌识曲"],
+    "link": "https://y.qq.com/",
+    "image": "img/qqmusic.png"
+  },
+  {
+    "id": "bilibili",
+    "name": "哔哩哔哩",
+    "category": "娱乐工具",
+    "payment": "免费/付费",
+    "tags": ["视频", "社区", "二次元"],
+    "desc": "国内知名的视频弹幕网站，汇聚了大量优质原创内容，拥有活跃的社区氛围。",
+    "features": ["弹幕互动", "番剧动画", "UP主创作"],
+    "link": "https://www.bilibili.com/",
+    "image": "img/bilibili.png"
+  },
+  {
+    "id": "douyin",
+    "name": "抖音",
+    "category": "娱乐工具",
+    "payment": "免费",
+    "tags": ["短视频", "社交", "直播"],
+    "desc": "记录美好生活，全球领先的短视频平台，提供丰富多样的创意内容。",
+    "features": ["短视频", "直播互动", "创意特效"],
+    "link": "https://www.douyin.com/",
+    "image": "img/tiktok.jpg"
   }
 ]

@@ -105,6 +105,11 @@ window.addEventListener('load', function() {
                     modalImg.alt = 'Mem Reduct';
                     modalTitle.textContent = 'Mem Reduct';
                     break;
+                case 'snipaste':
+                    modalImg.src = 'img/Snipaste.png';
+                    modalImg.alt = 'Snipaste';
+                    modalTitle.textContent = 'Snipaste';
+                    break;
                 case 'steam':
                     modalImg.src = 'img/steam.jpg';
                     modalImg.alt = 'Steam';
@@ -121,9 +126,24 @@ window.addEventListener('load', function() {
                     modalTitle.textContent = 'QQ';
                     break;
                 case 'netease-music':
-                    modalImg.src = 'img/music.jpg';
+                    modalImg.src = 'img/163music.png';
                     modalImg.alt = '网易云音乐';
                     modalTitle.textContent = '网易云音乐';
+                    break;
+                case 'qq-music':
+                    modalImg.src = 'img/qqmusic.png';
+                    modalImg.alt = 'QQ音乐';
+                    modalTitle.textContent = 'QQ音乐';
+                    break;
+                case 'bilibili':
+                    modalImg.src = 'img/bilibili.png';
+                    modalImg.alt = '哔哩哔哩';
+                    modalTitle.textContent = '哔哩哔哩';
+                    break;
+                case 'douyin':
+                    modalImg.src = 'img/tiktok.jpg';
+                    modalImg.alt = '抖音';
+                    modalTitle.textContent = '抖音';
                     break;
                 default:
                     modalImg.src = 'https://placehold.co/300x200?text=Software';
