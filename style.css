@@ -19,7 +19,7 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
 }
 
 .container {
-    max-width: 1800px;
+    max-width: 1650px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -513,14 +513,8 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
 
 .software-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 30px;
-}
-
-@media (max-width: 1100px) {
-    .software-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 @media (max-width: 768px) {
