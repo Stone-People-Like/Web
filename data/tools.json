@@ -169,6 +169,17 @@
     "image": "img/winrar.jpg"
   },
   {
+    "id": "mem-reduct",
+    "name": "Mem Reduct",
+    "category": "系统工具",
+    "payment": "免费",
+    "tags": ["内存", "清理", "优化"],
+    "desc": "轻量级实时内存管理应用程序，监控和清理系统内存，无需复杂配置。",
+    "features": ["内存监控", "自动清理", "极低占用"],
+    "link": "https://github.com/henrypp/memreduct",
+    "image": "img/MemReduct.avif"
+  },
+  {
     "id": "steam",
     "name": "Steam",
     "category": "娱乐工具",

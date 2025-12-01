@@ -100,6 +100,11 @@ window.addEventListener('load', function() {
                     modalImg.alt = 'WinRAR';
                     modalTitle.textContent = 'WinRAR';
                     break;
+                case 'mem-reduct':
+                    modalImg.src = 'img/MemReduct.avif';
+                    modalImg.alt = 'Mem Reduct';
+                    modalTitle.textContent = 'Mem Reduct';
+                    break;
                 case 'steam':
                     modalImg.src = 'img/steam.jpg';
                     modalImg.alt = 'Steam';
