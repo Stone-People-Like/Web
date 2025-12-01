@@ -70,6 +70,11 @@ window.addEventListener('load', function() {
                     modalImg.alt = 'Windows超级管理器';
                     modalTitle.textContent = 'Windows超级管理器';
                     break;
+                case 'context-menu':
+                    modalImg.src = 'img/Context Menu Manager.jpg';
+                    modalImg.alt = 'Context Menu Manager';
+                    modalTitle.textContent = 'Context Menu Manager';
+                    break;
                 case 'idm':
                     modalImg.src = 'img/IDM.jpg';
                     modalImg.alt = 'Internet Download Manager';

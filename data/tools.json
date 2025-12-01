@@ -103,6 +103,17 @@
     "image": "img/Windowssuper.png"
   },
   {
+    "id": "context-menu",
+    "name": "Context Menu Manager",
+    "category": "优化工具",
+    "payment": "免费",
+    "tags": ["右键菜单", "管理", "优化"],
+    "desc": "纯粹的Windows右键菜单管理工具，可以轻松启用或禁用文件、文件夹等右键菜单项目。",
+    "features": ["菜单管理", "清理右键", "开源免费"],
+    "link": "https://github.com/BluePointLilac/ContextMenuManager",
+    "image": "img/Context Menu Manager.jpg"
+  },
+  {
     "id": "idm",
     "name": "Internet Download Manager",
     "category": "系统工具",
