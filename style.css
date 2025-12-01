@@ -13,6 +13,25 @@ body {
     background-color: #f5f5f5;
 }
 
+/* 自定义滚动条 */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4CAF50;
+}
+
 /* 为所有主要元素设置中文字体 */
 h1, h2, h3, h4, h5, h6, p, a, li, span, div {
     font-family: inherit !important;
@@ -35,6 +54,9 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
     right: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background-color: rgba(51, 51, 51, 0.9);
 }
 
 .navbar .container {
@@ -101,6 +123,29 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
     background-attachment: fixed;
     position: relative;
     overflow: hidden;
+}
+
+/* 浮动动画 */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: float 6s ease-in-out infinite;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 1s;
 }
 
 /* 视差滚动效果 */
@@ -172,17 +217,22 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
     transform: scale(1);
 }
 
-.hero h2 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+/* 向上渐入动画 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
 }
 
-.hero p {
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+.fade-in-up {
+    animation-name: fadeInUp;
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
 }
 
 /* 按钮样式 */
@@ -231,6 +281,23 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
 .btn:active {
     transform: translateY(-1px);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 波纹动画效果 */
+.ripple {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
 }
 
 .btn-secondary {
@@ -534,8 +601,8 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
 }
 
 .software-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 .software-img {
@@ -902,6 +969,19 @@ h1, h2, h3, h4, h5, h6, p, a, li, span, div {
 body.dark-mode {
     background-color: #121212;
     color: #e0e0e0;
+}
+
+/* 深色模式滚动条 */
+body.dark-mode ::-webkit-scrollbar-track {
+    background: #121212;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background: #444;
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: #4CAF50;
 }
 
 /* 导航栏 */

@@ -165,4 +165,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Ripple Effect for Buttons
+    document.addEventListener('click', function(e) {
+        // Check if the clicked element is a button with ripple effect support
+        if (e.target.classList.contains('btn') || e.target.classList.contains('filter-btn') || e.target.closest('.btn') || e.target.closest('.filter-btn')) {
+            const button = e.target.classList.contains('btn') || e.target.classList.contains('filter-btn') ? e.target : e.target.closest('.btn') || e.target.closest('.filter-btn');
+            
+            // Create ripple element
+            const circle = document.createElement('span');
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+
+            const rect = button.getBoundingClientRect();
+            
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${e.clientX - rect.left - radius}px`;
+            circle.style.top = `${e.clientY - rect.top - radius}px`;
+            circle.classList.add('ripple');
+
+            // Remove existing ripple to avoid stacking too many
+            const existingRipple = button.querySelector('.ripple');
+            if (existingRipple) {
+                existingRipple.remove();
+            }
+
+            button.appendChild(circle);
+        }
+    });
 });

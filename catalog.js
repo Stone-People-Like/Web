@@ -63,8 +63,11 @@ window.addEventListener('load', function() {
 
   function renderGrid(list) {
     grid.innerHTML = ''
-    list.forEach(function(item) {
-      grid.appendChild(createCard(item))
+    list.forEach(function(item, index) {
+      var card = createCard(item)
+      card.classList.add('fade-in-up')
+      card.style.animationDelay = (index * 0.05) + 's' // Faster delay
+      grid.appendChild(card)
     })
   }
 
