@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>常用软件分享</title>
+    <title>软件列表 - 常用软件分享</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/user.png" type="image/png">
 </head>
@@ -18,37 +18,25 @@
         <div class="container">
             <h1 class="logo">软件分享</h1>
             <ul class="nav-links">
-                <li><a href="index.html" style="color: #4CAF50;">首页</a></li>
-                <li><a href="software.html">软件列表</a></li>
-                <li><a href="#about">关于我</a></li>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="software.html" style="color: #4CAF50;">软件列表</a></li>
+                <li><a href="index.html#about">关于我</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- 英雄区域 -->
-    <section id="home" class="hero">
+    <!-- 软件展示区域 -->
+    <section id="software" class="software-section" style="padding-top: 100px;">
         <div class="container">
-            <h2 class="fade-in">常用软件分享</h2>
-            <p class="fade-in">精心挑选的实用软件，提高你的工作效率和生活质量</p>
-            <a href="software.html" class="btn fade-in">软件列表</a>
-        </div>
-    </section>
-
-
-
-    <!-- 关于我区域 -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2 class="fade-in">关于我</h2>
-            <div class="about-content">
-                <div class="about-img fade-in-left">
-                    <img src="img/user.png" alt="个人头像" loading="lazy">
-                </div>
-                <div class="about-text fade-in-right">
-                    <p>大家好！我是一名软件爱好者，喜欢收集和分享各种实用的软件工具。这个网站是我精心整理的常用软件合集，希望能帮助到需要的人。</p>
-                    <p>我会定期更新这个网站，添加更多优质的软件推荐。如果有任何建议或问题，欢迎随时联系我。</p>
+            <h2 class="fade-in">全部分类</h2>
+            
+            <!-- 筛选功能区 -->
+            <div class="filter-section fade-in">
+                <div class="filter-controls">
+                    <div id="category-filter" class="category-filter"></div>
                 </div>
             </div>
+            <div id="software-grid" class="software-grid"></div>
         </div>
     </section>
 
@@ -91,5 +79,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="catalog.js"></script>
 </body>
 </html>
