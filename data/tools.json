@@ -92,6 +92,17 @@
     "image": "img/dism.webp"
   },
   {
+    "id": "windows-super",
+    "name": "Windows超级管理器",
+    "category": "优化工具",
+    "payment": "免费",
+    "tags": ["系统工具", "管理器", "优化"],
+    "desc": "一款功能强大的Windows系统管理软件，提供系统监控、清理、优化等多种实用功能。",
+    "features": ["系统监控", "垃圾清理", "隐私保护"],
+    "link": "https://github.com/Mogeko/Windows-Super-Manager",
+    "image": "img/Windowssuper.png"
+  },
+  {
     "id": "idm",
     "name": "Internet Download Manager",
     "category": "系统工具",
@@ -123,6 +134,17 @@
     "features": ["规则分流", "脚本支持", "跨平台"],
     "link": "https://github.com/clash-verge-rev/clash-verge-rev",
     "image": "img/ClashVerge.jpg"
+  },
+  {
+    "id": "winrar",
+    "name": "WinRAR",
+    "category": "系统工具",
+    "payment": "免费/付费",
+    "tags": ["压缩", "解压", "工具"],
+    "desc": "经典的压缩文件管理器，支持RAR、ZIP等多种格式，压缩率高，功能稳定。",
+    "features": ["高效压缩", "格式支持", "加密保护"],
+    "link": "https://www.win-rar.com/",
+    "image": "img/winrar.jpg"
   },
   {
     "id": "steam",

@@ -65,6 +65,11 @@ window.addEventListener('load', function() {
                     modalImg.alt = 'Dism++';
                     modalTitle.textContent = 'Dism++';
                     break;
+                case 'windows-super':
+                    modalImg.src = 'img/Windowssuper.png';
+                    modalImg.alt = 'Windows超级管理器';
+                    modalTitle.textContent = 'Windows超级管理器';
+                    break;
                 case 'idm':
                     modalImg.src = 'img/IDM.jpg';
                     modalImg.alt = 'Internet Download Manager';
@@ -79,6 +84,11 @@ window.addEventListener('load', function() {
                     modalImg.src = 'img/ClashVerge.jpg';
                     modalImg.alt = 'Clash Verge';
                     modalTitle.textContent = 'Clash Verge';
+                    break;
+                case 'winrar':
+                    modalImg.src = 'img/winrar.jpg';
+                    modalImg.alt = 'WinRAR';
+                    modalTitle.textContent = 'WinRAR';
                     break;
                 case 'steam':
                     modalImg.src = 'img/steam.jpg';
