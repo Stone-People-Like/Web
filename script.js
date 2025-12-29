@@ -134,6 +134,7 @@ window.addEventListener('load', function() {
     // Check on scroll
     window.addEventListener('scroll', handleScrollAnimation);
     
+    });
 });
 
 // Theme Toggle Functionality
@@ -194,3 +195,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// TEMPORARY: 元旦按钮 - 计划于2024年1月15日前删除
+// TODO: 删除计划：在2024-01-15之后移除此代码块及其相关按钮。该功能独立实现，不与其他功能耦合。
+(function() {
+    document.addEventListener('click', function(e) {
+        var target = e.target;
+        var btn = target.closest('#newyear-btn');
+        if (!btn) return;
+        e.preventDefault();
+        try {
+            var win = window.open('', 'newyearWindow', 'width=800,height=600,menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=yes');
+            if (!win) return;
+            win.document.write(
+                '<!DOCTYPE html>' +
+                '<html lang="zh-CN"><head>' +
+                '<meta charset="UTF-8">' +
+                '<title>元旦快乐</title>' +
+                '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+                '<style>' +
+                'body{font-family:Microsoft YaHei,Arial,sans-serif;margin:0;padding:20px;background:#f5f5f5;color:#333;}' +
+                '.container{max-width:760px;margin:0 auto;background:#fff;border-radius:8px;box-shadow:0 5px 15px rgba(0,0,0,0.1);padding:24px;}' +
+                'h1{margin:0 0 16px;font-size:24px;color:#4CAF50;}' +
+                'p{margin:12px 0 24px;font-size:16px;color:#666;}' +
+                '.btn{display:inline-block;background:#4CAF50;color:#fff;text-decoration:none;border:none;border-radius:6px;padding:10px 16px;cursor:pointer;transition:all .3s;}' +
+                '.btn:hover{background:#45a049;transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.15);}' +
+                '.btn:active{transform:translateY(0);box-shadow:0 4px 10px rgba(0,0,0,0.1);}' +
+                '</style>' +
+                '</head><body>' +
+                '<div class="container">' +
+                '<h1>元旦快乐</h1>' +
+                '<p>此处为元旦活动内容</p>' +
+                '<button class="btn" id="close-newyear">关闭窗口</button>' +
+                '</div>' +
+                '<script>' +
+                'document.addEventListener(\"click\",function(e){if(e.target && e.target.id===\"close-newyear\"){window.close();}});' +
+                '</script>' +
+                '</body></html>'
+            );
+            win.document.close();
+        } catch (err) {
+            console.error('打开元旦窗口失败:', err);
+        }
+    });
+})();
