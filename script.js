@@ -219,10 +219,76 @@ document.addEventListener('DOMContentLoaded', function() {
             styleSheet.innerText = `
                 @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
                 @keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.05); } 70% { transform: scale(0.9); } 100% { transform: scale(1); opacity: 1; } }
+                @keyframes firework {
+                    0% { transform: translate(var(--x), var(--initialY)); width: var(--initialSize); opacity: 1; }
+                    50% { width: 0.5rem; opacity: 1; }
+                    100% { width: var(--finalSize); opacity: 0; }
+                }
+                .firework, .firework::before, .firework::after {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 1rem;
+                    aspect-ratio: 1;
+                    background: radial-gradient(circle, #ff0 0.5rem, #0000 0) 50% 0% / 50% 50%, 
+                                radial-gradient(circle, #ff5722 0.5rem, #0000 0) 0% 50% / 50% 50%, 
+                                radial-gradient(circle, #ff0 0.5rem, #0000 0) 50% 100% / 50% 50%, 
+                                radial-gradient(circle, #ff5722 0.5rem, #0000 0) 100% 50% / 50% 50%, 
+                                radial-gradient(circle, #ff0 0.5rem, #0000 0) 50% 50% / 50% 50%,
+                                radial-gradient(circle, #2196f3 0.3rem, #0000 0) 20% 20% / 50% 50%,
+                                radial-gradient(circle, #4caf50 0.3rem, #0000 0) 80% 80% / 50% 50%;
+                    background-repeat: no-repeat;
+                    transform: translate(-50%, -50%);
+                    z-index: 998;
+                    animation: firework 1.5s infinite;
+                }
+                .firework::before {
+                    content: "";
+                    transform: translate(-50%, -50%) rotate(45deg);
+                }
+                .firework::after {
+                    content: "";
+                    transform: translate(-50%, -50%) rotate(-45deg);
+                }
                 .prize-item { transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
                 .prize-item:hover { transform: translateY(-3px) scale(1.01) !important; box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important; }
             `;
             document.head.appendChild(styleSheet);
+            
+            // Initial Fireworks Effect
+            var leftFirework = document.createElement('div');
+            leftFirework.className = 'firework';
+            leftFirework.style.cssText = 'position:absolute;left:10%;top:20%;--x:-50%;--initialY:100%;--initialSize:0.5rem;--finalSize:20rem;animation-delay:0.2s;';
+            
+            var rightFirework = document.createElement('div');
+            rightFirework.className = 'firework';
+            rightFirework.style.cssText = 'position:absolute;right:10%;top:20%;--x:50%;--initialY:100%;--initialSize:0.5rem;--finalSize:20rem;animation-delay:0.5s;';
+            
+            // Add more random fireworks
+            var fireworkTimeouts = [];
+            for(var i=0; i<15; i++) { // Increased count to 15 for more randomness
+                var timeout = setTimeout(function() {
+                    var fw = document.createElement('div');
+                    fw.className = 'firework';
+                    fw.style.left = (Math.random() * 90 + 5) + '%'; // Full width random
+                    fw.style.top = (Math.random() * 60 + 10) + '%'; // Random height
+                    fw.style.setProperty('--x', (Math.random() > 0.5 ? '-' : '') + '50%');
+                    fw.style.setProperty('--initialY', '60%');
+                    fw.style.setProperty('--initialSize', (0.3 + Math.random() * 0.5) + 'rem'); // Random size
+                    fw.style.setProperty('--finalSize', (10 + Math.random() * 25) + 'rem'); // Random burst size
+                    fw.style.animationDuration = (1 + Math.random() * 1.5) + 's'; // Random speed
+                    dialog.appendChild(fw);
+                    
+                    // Remove firework element after animation
+                    setTimeout(function() {
+                        if (fw.parentNode) fw.parentNode.removeChild(fw);
+                    }, 2500);
+                }, Math.random() * 2000); // Random delay within 2 seconds
+                fireworkTimeouts.push(timeout);
+            }
+            
+            // dialog.appendChild(leftFirework); // Remove fixed fireworks
+            // dialog.appendChild(rightFirework);
             
             var closeBtn = document.createElement('button');
             closeBtn.id = 'close-newyear';
@@ -233,6 +299,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             closeBtn.addEventListener('click', function() {
                 if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
+                // Clear any pending firework timeouts
+                fireworkTimeouts.forEach(function(t) { clearTimeout(t); });
             });
             
             var title = document.createElement('h1');
@@ -254,7 +322,6 @@ document.addEventListener('DOMContentLoaded', function() {
             addPrizes('2B涂卡笔', 10);
             addPrizes('餐巾纸', 10);
             addPrizes('红包', 1);
-            addPrizes('送花给花姐(赠红包)', 1);
             
             // Shuffle prizes
             prizes.sort(function() { return 0.5 - Math.random(); });
@@ -514,6 +581,8 @@ document.addEventListener('DOMContentLoaded', function() {
             overlay.addEventListener('click', function(ev) {
                 if (ev.target === overlay) {
                     if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
+                    // Clear any pending firework timeouts
+                    fireworkTimeouts.forEach(function(t) { clearTimeout(t); });
                 }
             });
         } catch (err) {
