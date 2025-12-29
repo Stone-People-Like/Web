@@ -212,19 +212,32 @@ document.addEventListener('DOMContentLoaded', function() {
             dialog.setAttribute('role', 'dialog');
             dialog.setAttribute('aria-modal', 'true');
             // Modified for full screen display
-            dialog.style.cssText = 'background:#fff;color:#333;width:100%;height:100%;border-radius:0;overflow:auto;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;';
+            dialog.style.cssText = 'background:#fafafa;color:#333;width:100%;height:100%;border-radius:0;overflow:auto;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;animation:fadeIn 0.5s ease-out;';
+            
+            // Add custom keyframe animations
+            var styleSheet = document.createElement("style");
+            styleSheet.innerText = `
+                @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+                @keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.05); } 70% { transform: scale(0.9); } 100% { transform: scale(1); opacity: 1; } }
+                .prize-item { transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+                .prize-item:hover { transform: translateY(-3px) scale(1.01) !important; box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important; }
+            `;
+            document.head.appendChild(styleSheet);
             
             var closeBtn = document.createElement('button');
             closeBtn.id = 'close-newyear';
             closeBtn.textContent = '×';
-            closeBtn.style.cssText = 'position:absolute;top:20px;right:20px;background:none;border:none;font-size:36px;color:#333;cursor:pointer;padding:10px;line-height:1;';
+            closeBtn.style.cssText = 'position:absolute;top:30px;right:30px;background:transparent;border:none;font-size:40px;color:#999;cursor:pointer;width:50px;height:50px;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;z-index:100;';
+            closeBtn.onmouseover = function() { this.style.transform = 'rotate(90deg)'; this.style.color = '#333'; };
+            closeBtn.onmouseout = function() { this.style.transform = 'rotate(0deg)'; this.style.color = '#999'; };
+            
             closeBtn.addEventListener('click', function() {
                 if (overlay && overlay.parentNode) overlay.parentNode.removeChild(overlay);
             });
             
             var title = document.createElement('h1');
             title.textContent = '23数媒2班元旦快乐';
-            title.style.cssText = 'margin:0 0 20px;font-size:36px;color:#4CAF50;margin-top:40px;'; // Moved to top with margin
+            title.style.cssText = 'margin:0 0 40px;font-size:42px;color:#2c3e50;margin-top:20px;font-weight:300;letter-spacing:4px;animation:bounceIn 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000);';
             
             var content = document.createElement('div');
             content.style.cssText = 'text-align:center;width:100%;max-width:95vw;flex:1;display:flex;flex-direction:column;align-items:center;'; // Increased max-width to 95vw
@@ -252,29 +265,34 @@ document.addEventListener('DOMContentLoaded', function() {
             
             prizes.forEach(function(prize) {
                 var item = document.createElement('div');
+                item.className = 'prize-item'; // Add class for hover effects
                 item.textContent = prize;
-                item.style.cssText = 'background:#f0f0f0;padding:18px 36px;border-radius:35px;font-size:26px;color:#555;border:1px solid #ddd;white-space:nowrap;box-shadow:0 5px 12px rgba(0,0,0,0.12);'; // Further increased padding and font-size
+                item.style.cssText = 'background:white;padding:18px 36px;border-radius:8px;font-size:20px;color:#333;border:1px solid #eee;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.05);cursor:default;'; // Minimalist item style
                 prizeList.appendChild(item);
             });
             
             // Lottery System
             var lotteryContainer = document.createElement('div');
-            lotteryContainer.style.cssText = 'padding:40px;margin-top:auto;margin-bottom:auto;width:100%;box-sizing:border-box;'; // Removed background and shadow
+            lotteryContainer.style.cssText = 'padding:40px;margin-top:auto;margin-bottom:auto;width:100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;'; 
             
             var lotteryResult = document.createElement('div');
             lotteryResult.id = 'lottery-result';
             lotteryResult.textContent = '点击下方按钮开始抽奖';
-            lotteryResult.style.cssText = 'font-size:28px;margin-bottom:30px;min-height:50px;color:#333;font-weight:bold;';
+            lotteryResult.style.cssText = 'font-size:28px;margin-bottom:40px;min-height:60px;color:#333;font-weight:300;transition:all 0.3s ease;';
             
             var lotteryBtn = document.createElement('button');
             lotteryBtn.className = 'btn';
             lotteryBtn.textContent = '开始抽奖';
-            lotteryBtn.style.cssText = 'padding:20px 60px;font-size:24px;background:#4CAF50;color:white;border:none;border-radius:40px;cursor:pointer;transition:transform 0.2s;box-shadow:0 5px 15px rgba(76, 175, 80, 0.3);';
+            lotteryBtn.style.cssText = 'padding:18px 50px;font-size:20px;background:#333;color:white;border:none;border-radius:4px;cursor:pointer;transition:all 0.3s ease;box-shadow:none;font-weight:500;letter-spacing:1px;';
+            lotteryBtn.onmouseover = function() { this.style.background = '#000'; this.style.transform = 'translateY(-2px)'; };
+            lotteryBtn.onmouseout = function() { this.style.background = '#333'; this.style.transform = 'translateY(0)'; };
             
             var resetBtn = document.createElement('button');
             resetBtn.className = 'btn';
             resetBtn.textContent = '重置';
-            resetBtn.style.cssText = 'padding:20px 60px;font-size:24px;background:#9E9E9E;color:white;border:none;border-radius:40px;cursor:pointer;transition:transform 0.2s;box-shadow:0 5px 15px rgba(158, 158, 158, 0.3);';
+            resetBtn.style.cssText = 'padding:18px 50px;font-size:20px;background:transparent;color:#666;border:1px solid #ddd;border-radius:4px;cursor:pointer;transition:all 0.3s ease;box-shadow:none;font-weight:500;letter-spacing:1px;';
+            resetBtn.onmouseover = function() { this.style.borderColor = '#999'; this.style.color = '#333'; };
+            resetBtn.onmouseout = function() { this.style.borderColor = '#ddd'; this.style.color = '#666'; };
             // TODO: Add reset functionality
             
             var btnContainer = document.createElement('div');
@@ -331,12 +349,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Reset all prize items styles
                 var items = prizeList.children;
                 for (var i = 0; i < items.length; i++) {
-                    items[i].style.background = '#f0f0f0';
-                    items[i].style.color = '#555';
+                    items[i].style.background = 'white';
+                    items[i].style.color = '#333';
                     items[i].style.transform = 'scale(1)';
-                    items[i].style.boxShadow = '0 3px 8px rgba(0,0,0,0.08)';
+                    items[i].style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
                     items[i].style.opacity = '1';
                     items[i].style.textDecoration = 'none';
+                    items[i].style.borderColor = '#eee';
                 }
                 
                 lotteryResult.textContent = '点击下方按钮开始抽奖';
@@ -385,10 +404,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 function roll() {
                     // Remove highlight from previous item (unless it's already drawn)
                     if (currentIndex !== -1 && !drawnIndices.has(currentIndex)) {
-                        prizeItems[currentIndex].style.background = '#f0f0f0';
-                        prizeItems[currentIndex].style.color = '#555';
+                        prizeItems[currentIndex].style.background = 'white';
+                        prizeItems[currentIndex].style.color = '#333';
                         prizeItems[currentIndex].style.transform = 'scale(1)';
-                        prizeItems[currentIndex].style.boxShadow = '0 3px 8px rgba(0,0,0,0.08)';
+                        prizeItems[currentIndex].style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+                        prizeItems[currentIndex].style.borderColor = '#eee';
                     }
                     
                     // Move to next item (randomly from available)
@@ -396,13 +416,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     currentIndex = availableIndices[randomAvailableIndex];
                     
                     // Highlight current item
-                    prizeItems[currentIndex].style.background = '#4CAF50';
+                    prizeItems[currentIndex].style.background = '#333';
                     prizeItems[currentIndex].style.color = '#fff';
                     prizeItems[currentIndex].style.transform = 'scale(1.1)';
-                    prizeItems[currentIndex].style.boxShadow = '0 5px 15px rgba(76, 175, 80, 0.4)';
+                    prizeItems[currentIndex].style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
+                    prizeItems[currentIndex].style.zIndex = '10';
+                    prizeItems[currentIndex].style.borderColor = '#333';
                     prizeItems[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
                     
                     lotteryResult.textContent = prizes[currentIndex];
+                    lotteryResult.style.transform = 'scale(1.05)';
                     
                     steps++;
                     
@@ -430,18 +453,32 @@ document.addEventListener('DOMContentLoaded', function() {
                         updateStats();
                         
                         // Mark item as drawn
-                        prizeItems[currentIndex].style.background = '#ddd';
-                        prizeItems[currentIndex].style.color = '#999';
-                        prizeItems[currentIndex].style.textDecoration = 'line-through';
-                        prizeItems[currentIndex].style.transform = 'scale(0.95)';
+                        prizeItems[currentIndex].style.background = '#f9f9f9';
+                        prizeItems[currentIndex].style.color = '#ccc';
+                        prizeItems[currentIndex].style.borderColor = '#eee';
+                        prizeItems[currentIndex].style.textDecoration = 'none'; // Minimalist often avoids strike-through, just dim it
+                        prizeItems[currentIndex].style.opacity = '0.6';
+                        prizeItems[currentIndex].style.transform = 'scale(1)';
                         prizeItems[currentIndex].style.boxShadow = 'none';
+                        prizeItems[currentIndex].style.zIndex = 'auto';
                         
                         // Final highlight effect
-                        lotteryResult.style.color = '#ff4444';
-                        lotteryResult.style.transform = 'scale(1.2)';
+                        lotteryResult.style.color = '#333';
+                        lotteryResult.style.textShadow = 'none';
+                        lotteryResult.style.fontWeight = '500';
+                        lotteryResult.style.animation = 'bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                        
+                        // Confetti effect (simple simulation)
+                        var confetti = document.createElement('div');
+                        confetti.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;';
+                        // Add some confetti particles logic here if needed or just flash
+                        lotteryResult.parentElement.appendChild(confetti);
+                        setTimeout(function() { if(confetti.parentNode) confetti.parentNode.removeChild(confetti); }, 2000);
+                        
                         setTimeout(function() {
+                            lotteryResult.style.animation = '';
                             lotteryResult.style.transform = 'scale(1)';
-                        }, 200);
+                        }, 500);
                     }
                 }
                 
