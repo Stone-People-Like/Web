@@ -241,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     transform: translate(-50%, -50%);
                     z-index: 998;
                     animation: firework 1.5s infinite;
+                    transition: opacity 0.5s ease-out; /* Add fade out transition */
                 }
                 .firework::before {
                     content: "";
@@ -549,11 +550,31 @@ document.addEventListener('DOMContentLoaded', function() {
                         lotteryResult.style.animation = 'bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
                         
                         // Confetti effect (simple simulation)
-                        var confetti = document.createElement('div');
-                        confetti.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999;';
-                        // Add some confetti particles logic here if needed or just flash
-                        lotteryResult.parentElement.appendChild(confetti);
-                        setTimeout(function() { if(confetti.parentNode) confetti.parentNode.removeChild(confetti); }, 2000);
+                        // Add random fireworks effect for winning
+                        for(var i=0; i<8; i++) {
+                            setTimeout(function() {
+                                var fw = document.createElement('div');
+                                fw.className = 'firework';
+                                fw.style.left = (Math.random() * 90 + 5) + '%';
+                                fw.style.top = (Math.random() * 60 + 10) + '%';
+                                fw.style.setProperty('--x', (Math.random() > 0.5 ? '-' : '') + '50%');
+                                fw.style.setProperty('--initialY', '60%');
+                                fw.style.setProperty('--initialSize', (0.3 + Math.random() * 0.5) + 'rem');
+                                fw.style.setProperty('--finalSize', (15 + Math.random() * 20) + 'rem');
+                                fw.style.animationDuration = (1 + Math.random() * 1) + 's';
+                                
+                                // Append to dialog instead of overlay to be contained
+                                dialog.appendChild(fw);
+                                
+                                // Fade out before removing
+                                setTimeout(function() {
+                                    fw.style.opacity = '0';
+                                    setTimeout(function() {
+                                        if(fw.parentNode) fw.parentNode.removeChild(fw);
+                                    }, 500);
+                                }, 1500);
+                            }, i * 300);
+                        }
                         
                         setTimeout(function() {
                             lotteryResult.style.animation = '';
