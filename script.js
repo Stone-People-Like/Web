@@ -380,6 +380,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 
+                // Mark previously drawn items as gray (in case the last winner is still highlighted)
+                drawnIndices.forEach(function(index) {
+                    var item = prizeList.children[index];
+                    item.style.background = '#f9f9f9';
+                    item.style.color = '#ccc';
+                    item.style.borderColor = '#eee';
+                    item.style.textDecoration = 'none';
+                    item.style.opacity = '0.6';
+                    item.style.transform = 'scale(1)';
+                    item.style.boxShadow = 'none';
+                    item.style.zIndex = 'auto';
+                });
+                
                 isRolling = true;
                 lotteryBtn.disabled = true;
                 lotteryBtn.style.opacity = '0.7';
@@ -452,15 +465,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Update stats
                         updateStats();
                         
-                        // Mark item as drawn
-                        prizeItems[currentIndex].style.background = '#f9f9f9';
-                        prizeItems[currentIndex].style.color = '#ccc';
-                        prizeItems[currentIndex].style.borderColor = '#eee';
-                        prizeItems[currentIndex].style.textDecoration = 'none'; // Minimalist often avoids strike-through, just dim it
-                        prizeItems[currentIndex].style.opacity = '0.6';
-                        prizeItems[currentIndex].style.transform = 'scale(1)';
-                        prizeItems[currentIndex].style.boxShadow = 'none';
-                        prizeItems[currentIndex].style.zIndex = 'auto';
+                        // Keep the winner highlighted (Modern Minimalist Style)
+                        prizeItems[currentIndex].style.background = '#333';
+                        prizeItems[currentIndex].style.color = '#fff';
+                        prizeItems[currentIndex].style.borderColor = '#333';
+                        prizeItems[currentIndex].style.textDecoration = 'none';
+                        prizeItems[currentIndex].style.opacity = '1';
+                        prizeItems[currentIndex].style.transform = 'scale(1.15)';
+                        prizeItems[currentIndex].style.boxShadow = '0 15px 30px rgba(0,0,0,0.2)';
+                        prizeItems[currentIndex].style.zIndex = '20';
                         
                         // Final highlight effect
                         lotteryResult.style.color = '#333';
