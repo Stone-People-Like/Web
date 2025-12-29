@@ -223,41 +223,43 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             var title = document.createElement('h1');
-            title.textContent = '元旦快乐';
+            title.textContent = '23数媒2班元旦快乐';
             title.style.cssText = 'margin:0 0 20px;font-size:36px;color:#4CAF50;margin-top:40px;'; // Moved to top with margin
             
             var content = document.createElement('div');
             content.style.cssText = 'text-align:center;width:100%;max-width:95vw;flex:1;display:flex;flex-direction:column;align-items:center;'; // Increased max-width to 95vw
             
-            var prizes = [
-                '特等奖：iPhone 15', '特等奖：MacBook Air', '特等奖：PS5', '特等奖：iPad Air',
-                '一等奖：机械键盘', '一等奖：蓝牙耳机', '一等奖：智能手表', '一等奖：拍立得',
-                '一等奖：电竞椅', '一等奖：显示器', '一等奖：投影仪', '一等奖：Switch',
-                '二等奖：鼠标垫', '二等奖：U盘', '二等奖：移动电源', '二等奖：蓝牙音箱',
-                '二等奖：台灯', '二等奖：抱枕', '二等奖：保温杯', '二等奖：双肩包',
-                '二等奖：无线鼠标', '二等奖：加湿器', '二等奖：手办', '二等奖：京东卡',
-                '三等奖：笔记本', '三等奖：签字笔', '三等奖：钥匙扣', '三等奖：手机支架',
-                '三等奖：数据线', '三等奖：帆布袋', '三等奖：贴纸', '三等奖：零食礼包',
-                '三等奖：饮料', '三等奖：纸巾', '三等奖：口罩', '三等奖：洗手液',
-                '幸运奖：优惠券', '幸运奖：代金券', '幸运奖：体验卡', '幸运奖：会员月卡',
-                '幸运奖：积分', '幸运奖：红包', '幸运奖：谢谢参与', '幸运奖：再接再厉',
-                '幸运奖：明年再来', '幸运奖：笑口常开', '幸运奖：身体健康', '幸运奖：万事如意'
-            ];
+            var prizes = [];
+            // Generate prizes based on counts
+            function addPrizes(name, count) {
+                for(var i=0; i<count; i++) prizes.push(name);
+            }
+            
+            addPrizes('笔记本', 6);
+            addPrizes('修正带', 10);
+            addPrizes('红黑笔套装', 10);
+            addPrizes('2B涂卡笔', 10);
+            addPrizes('餐巾纸', 10);
+            addPrizes('红包', 1);
+            addPrizes('送花给花姐(赠红包)', 1);
+            
+            // Shuffle prizes
+            prizes.sort(function() { return 0.5 - Math.random(); });
             
             // Prize List Display
             var prizeList = document.createElement('div');
-            prizeList.style.cssText = 'display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:20px;width:100%;max-height:40vh;overflow-y:auto;padding:15px;'; // Increased gap and padding
+            prizeList.style.cssText = 'display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-bottom:20px;width:100%;max-height:55vh;overflow-y:auto;padding:30px;'; // Increased gap and padding
             
             prizes.forEach(function(prize) {
                 var item = document.createElement('div');
                 item.textContent = prize;
-                item.style.cssText = 'background:#f0f0f0;padding:10px 20px;border-radius:20px;font-size:16px;color:#555;border:1px solid #ddd;white-space:nowrap;box-shadow:0 2px 5px rgba(0,0,0,0.05);'; // Increased padding and font-size
+                item.style.cssText = 'background:#f0f0f0;padding:18px 36px;border-radius:35px;font-size:26px;color:#555;border:1px solid #ddd;white-space:nowrap;box-shadow:0 5px 12px rgba(0,0,0,0.12);'; // Further increased padding and font-size
                 prizeList.appendChild(item);
             });
             
             // Lottery System
             var lotteryContainer = document.createElement('div');
-            lotteryContainer.style.cssText = 'background:#f9f9f9;padding:40px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.1);margin-top:auto;margin-bottom:auto;width:100%;box-sizing:border-box;';
+            lotteryContainer.style.cssText = 'padding:40px;margin-top:auto;margin-bottom:auto;width:100%;box-sizing:border-box;'; // Removed background and shadow
             
             var lotteryResult = document.createElement('div');
             lotteryResult.id = 'lottery-result';
@@ -276,14 +278,89 @@ document.addEventListener('DOMContentLoaded', function() {
             // TODO: Add reset functionality
             
             var btnContainer = document.createElement('div');
-            btnContainer.style.cssText = 'display:flex;gap:20px;justify-content:center;';
+            btnContainer.style.cssText = 'display:flex;gap:20px;justify-content:center;margin-bottom:15px;';
             btnContainer.appendChild(lotteryBtn);
             btnContainer.appendChild(resetBtn);
             
             var isRolling = false;
+            // Track drawn prizes
+            var drawnIndices = new Set();
+            
+            // Stats Display
+            var statsDisplay = document.createElement('div');
+            statsDisplay.id = 'lottery-stats';
+            statsDisplay.style.cssText = 'font-size:18px;color:#666;margin-top:10px;font-weight:bold;line-height:1.6;';
+            
+            function updateStats() {
+                var drawnCount = drawnIndices.size;
+                var remainingCount = prizes.length - drawnCount;
+                
+                // Count remaining prizes by type
+                var remainingByType = {};
+                for (var i = 0; i < prizes.length; i++) {
+                    if (!drawnIndices.has(i)) {
+                        var type = prizes[i];
+                        remainingByType[type] = (remainingByType[type] || 0) + 1;
+                    }
+                }
+                
+                var statsHtml = '<div>已抽次数：' + drawnCount + ' / 剩余总数：' + remainingCount + '</div>';
+                statsHtml += '<div style="font-size:14px;margin-top:10px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">';
+                
+                for (var type in remainingByType) {
+                    statsHtml += '<span style="background:#e0e0e0;padding:2px 8px;border-radius:10px;">' + type + ': ' + remainingByType[type] + '</span>';
+                }
+                statsHtml += '</div>';
+                
+                statsDisplay.innerHTML = statsHtml;
+            }
+            
+            // Initialize stats
+            updateStats();
+            
+            // Reset functionality
+            resetBtn.addEventListener('click', function() {
+                if (isRolling) return;
+                
+                if (!confirm('确定要重置所有抽奖记录吗？这将开始新的一轮游戏。')) {
+                    return;
+                }
+                
+                drawnIndices.clear();
+                
+                // Reset all prize items styles
+                var items = prizeList.children;
+                for (var i = 0; i < items.length; i++) {
+                    items[i].style.background = '#f0f0f0';
+                    items[i].style.color = '#555';
+                    items[i].style.transform = 'scale(1)';
+                    items[i].style.boxShadow = '0 3px 8px rgba(0,0,0,0.08)';
+                    items[i].style.opacity = '1';
+                    items[i].style.textDecoration = 'none';
+                }
+                
+                lotteryResult.textContent = '点击下方按钮开始抽奖';
+                lotteryResult.style.color = '#333';
+                lotteryResult.style.transform = 'scale(1)';
+                
+                lotteryBtn.textContent = '开始抽奖';
+                lotteryBtn.disabled = false;
+                lotteryBtn.style.opacity = '1';
+                
+                // Reset stats
+                updateStats();
+            });
             
             lotteryBtn.addEventListener('click', function() {
                 if (isRolling) return;
+                
+                // Check if all prizes drawn
+                if (drawnIndices.size >= prizes.length) {
+                    lotteryResult.textContent = '所有奖品已抽完！请点击重置';
+                    lotteryResult.style.color = '#ff4444';
+                    return;
+                }
+                
                 isRolling = true;
                 lotteryBtn.disabled = true;
                 lotteryBtn.style.opacity = '0.7';
@@ -297,17 +374,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 var maxSteps = 50 + Math.floor(Math.random() * 20); // Total steps (random)
                 var timer;
                 
+                // Get available indices
+                var availableIndices = [];
+                for (var i = 0; i < prizes.length; i++) {
+                    if (!drawnIndices.has(i)) {
+                        availableIndices.push(i);
+                    }
+                }
+                
                 function roll() {
-                    // Remove highlight from previous item
-                    if (currentIndex !== -1) {
+                    // Remove highlight from previous item (unless it's already drawn)
+                    if (currentIndex !== -1 && !drawnIndices.has(currentIndex)) {
                         prizeItems[currentIndex].style.background = '#f0f0f0';
                         prizeItems[currentIndex].style.color = '#555';
                         prizeItems[currentIndex].style.transform = 'scale(1)';
-                        prizeItems[currentIndex].style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+                        prizeItems[currentIndex].style.boxShadow = '0 3px 8px rgba(0,0,0,0.08)';
                     }
                     
-                    // Move to next item (randomly)
-                    currentIndex = Math.floor(Math.random() * prizeItems.length);
+                    // Move to next item (randomly from available)
+                    var randomAvailableIndex = Math.floor(Math.random() * availableIndices.length);
+                    currentIndex = availableIndices[randomAvailableIndex];
                     
                     // Highlight current item
                     prizeItems[currentIndex].style.background = '#4CAF50';
@@ -337,6 +423,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         resetBtn.disabled = false;
                         resetBtn.style.opacity = '1';
                         
+                        // Add to drawn set
+                        drawnIndices.add(currentIndex);
+                        
+                        // Update stats
+                        updateStats();
+                        
+                        // Mark item as drawn
+                        prizeItems[currentIndex].style.background = '#ddd';
+                        prizeItems[currentIndex].style.color = '#999';
+                        prizeItems[currentIndex].style.textDecoration = 'line-through';
+                        prizeItems[currentIndex].style.transform = 'scale(0.95)';
+                        prizeItems[currentIndex].style.boxShadow = 'none';
+                        
                         // Final highlight effect
                         lotteryResult.style.color = '#ff4444';
                         lotteryResult.style.transform = 'scale(1.2)';
@@ -351,6 +450,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             lotteryContainer.appendChild(lotteryResult);
             lotteryContainer.appendChild(btnContainer);
+            lotteryContainer.appendChild(statsDisplay);
             
             content.appendChild(prizeList);
             content.appendChild(lotteryContainer);
