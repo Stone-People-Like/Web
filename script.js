@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
             dialog.setAttribute('role', 'dialog');
             dialog.setAttribute('aria-modal', 'true');
             // Modified for full screen display
-            dialog.style.cssText = 'background:#fafafa;color:#333;width:100%;height:100%;border-radius:0;overflow:auto;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;animation:fadeIn 0.5s ease-out;';
+            dialog.style.cssText = 'background:#fafafa;color:#333;width:100%;height:100%;border-radius:0;overflow:auto;padding:1.5rem;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;align-items:center;position:relative;animation:fadeIn 0.5s ease-out;';
             
             // Add custom keyframe animations
             var styleSheet = document.createElement("style");
@@ -252,7 +252,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     transform: translate(-50%, -50%) rotate(-45deg);
                 }
                 .prize-item { transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
-                .prize-item:hover { transform: translateY(-3px) scale(1.01) !important; box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important; }
+                .prize-item:hover { transform: translateY(-0.1875rem) scale(1.01) !important; box-shadow: 0 0.3125rem 0.9375rem rgba(0,0,0,0.1) !important; }
+                
+                @media (max-width: 768px) {
+                    #newyear-modal h1 { font-size: 1.75rem !important; margin-bottom: 1.25rem !important; }
+                    .prize-item { padding: 0.625rem 1.25rem !important; font-size: 1rem !important; }
+                    #lottery-result { font-size: 1.25rem !important; min-height: 2.5rem !important; }
+                    #lottery-stats { font-size: 0.875rem !important; }
+                    .btn { padding: 0.75rem 1.875rem !important; font-size: 1.125rem !important; }
+                }
             `;
             document.head.appendChild(styleSheet);
             
@@ -294,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var closeBtn = document.createElement('button');
             closeBtn.id = 'close-newyear';
             closeBtn.textContent = '×';
-            closeBtn.style.cssText = 'position:absolute;top:30px;right:30px;background:transparent;border:none;font-size:40px;color:#999;cursor:pointer;width:50px;height:50px;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;z-index:100;';
+            closeBtn.style.cssText = 'position:absolute;top:1.875rem;right:1.875rem;background:transparent;border:none;font-size:2.5rem;color:#999;cursor:pointer;width:3.125rem;height:3.125rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;z-index:100;';
             closeBtn.onmouseover = function() { this.style.transform = 'rotate(90deg)'; this.style.color = '#333'; };
             closeBtn.onmouseout = function() { this.style.transform = 'rotate(0deg)'; this.style.color = '#999'; };
             
@@ -306,7 +314,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             var title = document.createElement('h1');
             title.textContent = '23数媒2班元旦快乐';
-            title.style.cssText = 'margin:0 0 40px;font-size:42px;color:#2c3e50;margin-top:20px;font-weight:300;letter-spacing:4px;animation:bounceIn 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000);';
+            title.style.cssText = 'margin:0 0 2.5rem;font-size:2.625rem;color:#2c3e50;margin-top:1.25rem;font-weight:300;letter-spacing:0.25rem;animation:bounceIn 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000);';
             
             var content = document.createElement('div');
             content.style.cssText = 'text-align:center;width:100%;max-width:95vw;flex:1;display:flex;flex-direction:column;align-items:center;'; // Increased max-width to 95vw
@@ -325,46 +333,51 @@ document.addEventListener('DOMContentLoaded', function() {
             addPrizes('红包', 1);
             
             // Shuffle prizes
-            prizes.sort(function() { return 0.5 - Math.random(); });
+            for (var i = prizes.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = prizes[i];
+                prizes[i] = prizes[j];
+                prizes[j] = temp;
+            }
             
             // Prize List Display
             var prizeList = document.createElement('div');
-            prizeList.style.cssText = 'display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-bottom:20px;width:100%;max-height:55vh;overflow-y:auto;padding:30px;'; // Increased gap and padding
+            prizeList.style.cssText = 'display:flex;flex-wrap:wrap;justify-content:center;gap:1.25rem;margin-bottom:1.25rem;width:100%;max-height:55vh;overflow-y:auto;padding:1.875rem;'; // Increased gap and padding
             
             prizes.forEach(function(prize) {
                 var item = document.createElement('div');
                 item.className = 'prize-item'; // Add class for hover effects
                 item.textContent = prize;
-                item.style.cssText = 'background:white;padding:18px 36px;border-radius:8px;font-size:20px;color:#333;border:1px solid #eee;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.05);cursor:default;'; // Minimalist item style
+                item.style.cssText = 'background:white;padding:1.125rem 2.25rem;border-radius:0.5rem;font-size:1.25rem;color:#333;border:0.0625rem solid #eee;white-space:nowrap;box-shadow:0 0.125rem 0.5rem rgba(0,0,0,0.05);cursor:default;'; // Minimalist item style
                 prizeList.appendChild(item);
             });
             
             // Lottery System
             var lotteryContainer = document.createElement('div');
-            lotteryContainer.style.cssText = 'padding:40px;margin-top:auto;margin-bottom:auto;width:100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;'; 
+            lotteryContainer.style.cssText = 'padding:2.5rem;margin-top:auto;margin-bottom:auto;width:100%;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;'; 
             
             var lotteryResult = document.createElement('div');
             lotteryResult.id = 'lottery-result';
             lotteryResult.textContent = '点击下方按钮开始抽奖';
-            lotteryResult.style.cssText = 'font-size:28px;margin-bottom:40px;min-height:60px;color:#333;font-weight:300;transition:all 0.3s ease;';
+            lotteryResult.style.cssText = 'font-size:1.75rem;margin-bottom:2.5rem;min-height:3.75rem;color:#333;font-weight:300;transition:all 0.3s ease;';
             
             var lotteryBtn = document.createElement('button');
             lotteryBtn.className = 'btn';
             lotteryBtn.textContent = '开始抽奖';
-            lotteryBtn.style.cssText = 'padding:18px 50px;font-size:20px;background:#333;color:white;border:none;border-radius:4px;cursor:pointer;transition:all 0.3s ease;box-shadow:none;font-weight:500;letter-spacing:1px;';
-            lotteryBtn.onmouseover = function() { this.style.background = '#000'; this.style.transform = 'translateY(-2px)'; };
+            lotteryBtn.style.cssText = 'padding:1.125rem 3.125rem;font-size:1.25rem;background:#333;color:white;border:none;border-radius:0.25rem;cursor:pointer;transition:all 0.3s ease;box-shadow:none;font-weight:500;letter-spacing:0.0625rem;';
+            lotteryBtn.onmouseover = function() { this.style.background = '#000'; this.style.transform = 'translateY(-0.125rem)'; };
             lotteryBtn.onmouseout = function() { this.style.background = '#333'; this.style.transform = 'translateY(0)'; };
             
             var resetBtn = document.createElement('button');
             resetBtn.className = 'btn';
             resetBtn.textContent = '重置';
-            resetBtn.style.cssText = 'padding:18px 50px;font-size:20px;background:transparent;color:#666;border:1px solid #ddd;border-radius:4px;cursor:pointer;transition:all 0.3s ease;box-shadow:none;font-weight:500;letter-spacing:1px;';
+            resetBtn.style.cssText = 'padding:1.125rem 3.125rem;font-size:1.25rem;background:transparent;color:#666;border:0.0625rem solid #ddd;border-radius:0.25rem;cursor:pointer;transition:all 0.3s ease;box-shadow:none;font-weight:500;letter-spacing:0.0625rem;';
             resetBtn.onmouseover = function() { this.style.borderColor = '#999'; this.style.color = '#333'; };
             resetBtn.onmouseout = function() { this.style.borderColor = '#ddd'; this.style.color = '#666'; };
             // TODO: Add reset functionality
             
             var btnContainer = document.createElement('div');
-            btnContainer.style.cssText = 'display:flex;gap:20px;justify-content:center;margin-bottom:15px;';
+            btnContainer.style.cssText = 'display:flex;gap:1.25rem;justify-content:center;margin-bottom:0.9375rem;';
             btnContainer.appendChild(lotteryBtn);
             btnContainer.appendChild(resetBtn);
             
@@ -375,7 +388,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Stats Display
             var statsDisplay = document.createElement('div');
             statsDisplay.id = 'lottery-stats';
-            statsDisplay.style.cssText = 'font-size:18px;color:#666;margin-top:10px;font-weight:bold;line-height:1.6;';
+            statsDisplay.style.cssText = 'font-size:1.125rem;color:#666;margin-top:0.625rem;font-weight:bold;line-height:1.6;';
             
             function updateStats() {
                 var drawnCount = drawnIndices.size;
@@ -391,10 +404,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 var statsHtml = '<div>已抽次数：' + drawnCount + ' / 剩余总数：' + remainingCount + '</div>';
-                statsHtml += '<div style="font-size:14px;margin-top:10px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;">';
+                statsHtml += '<div style="font-size:0.875rem;margin-top:0.625rem;display:flex;flex-wrap:wrap;justify-content:center;gap:0.625rem;">';
                 
                 for (var type in remainingByType) {
-                    statsHtml += '<span style="background:#e0e0e0;padding:2px 8px;border-radius:10px;">' + type + ': ' + remainingByType[type] + '</span>';
+                    statsHtml += '<span style="background:#e0e0e0;padding:0.125rem 0.5rem;border-radius:0.625rem;">' + type + ': ' + remainingByType[type] + '</span>';
                 }
                 statsHtml += '</div>';
                 
@@ -420,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     items[i].style.background = 'white';
                     items[i].style.color = '#333';
                     items[i].style.transform = 'scale(1)';
-                    items[i].style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+                    items[i].style.boxShadow = '0 0.125rem 0.5rem rgba(0,0,0,0.05)';
                     items[i].style.opacity = '1';
                     items[i].style.textDecoration = 'none';
                     items[i].style.borderColor = '#eee';
@@ -488,7 +501,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         prizeItems[currentIndex].style.background = 'white';
                         prizeItems[currentIndex].style.color = '#333';
                         prizeItems[currentIndex].style.transform = 'scale(1)';
-                        prizeItems[currentIndex].style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)';
+                        prizeItems[currentIndex].style.boxShadow = '0 0.125rem 0.5rem rgba(0,0,0,0.05)';
                         prizeItems[currentIndex].style.borderColor = '#eee';
                     }
                     
@@ -500,7 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     prizeItems[currentIndex].style.background = '#333';
                     prizeItems[currentIndex].style.color = '#fff';
                     prizeItems[currentIndex].style.transform = 'scale(1.1)';
-                    prizeItems[currentIndex].style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
+                    prizeItems[currentIndex].style.boxShadow = '0 0.625rem 1.875rem rgba(0,0,0,0.15)';
                     prizeItems[currentIndex].style.zIndex = '10';
                     prizeItems[currentIndex].style.borderColor = '#333';
                     prizeItems[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
@@ -540,7 +553,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         prizeItems[currentIndex].style.textDecoration = 'none';
                         prizeItems[currentIndex].style.opacity = '1';
                         prizeItems[currentIndex].style.transform = 'scale(1.15)';
-                        prizeItems[currentIndex].style.boxShadow = '0 15px 30px rgba(0,0,0,0.2)';
+                        prizeItems[currentIndex].style.boxShadow = '0 0.9375rem 1.875rem rgba(0,0,0,0.2)';
                         prizeItems[currentIndex].style.zIndex = '20';
                         
                         // Final highlight effect
