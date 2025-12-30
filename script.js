@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 @media (max-width: 768px) {
                     #newyear-modal h1 { font-size: 1.75rem !important; margin-bottom: 1.25rem !important; }
-                    .prize-item { padding: 0.625rem 1.25rem !important; font-size: 1rem !important; }
+                    .prize-item { padding: 0.75rem 1.5rem !important; font-size: 1.125rem !important; }
                     #lottery-result { font-size: 1.25rem !important; min-height: 2.5rem !important; }
                     #lottery-stats { font-size: 0.875rem !important; }
                     .btn { padding: 0.75rem 1.875rem !important; font-size: 1.125rem !important; }
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var item = document.createElement('div');
                 item.className = 'prize-item'; // Add class for hover effects
                 item.textContent = prize;
-                item.style.cssText = 'background:white;padding:1.125rem 2.25rem;border-radius:0.5rem;font-size:1.25rem;color:#333;border:0.0625rem solid #eee;white-space:nowrap;box-shadow:0 0.125rem 0.5rem rgba(0,0,0,0.05);cursor:default;'; // Minimalist item style
+                item.style.cssText = 'background:white;padding:1.5rem 3rem;border-radius:0.5rem;font-size:1.5rem;color:#333;border:0.0625rem solid #eee;white-space:nowrap;box-shadow:0 0.125rem 0.5rem rgba(0,0,0,0.05);cursor:default;'; // Minimalist item style
                 prizeList.appendChild(item);
             });
             
