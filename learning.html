@@ -158,6 +158,184 @@
         body > img[src^="img/"] {
             display: none;
         }
+
+        /* 大纲栏样式 */
+        .outline-sidebar {
+            flex: 0 0 15rem; /* 240px */
+            background-color: #fff;
+            padding: 1.25rem;
+            border-radius: 0.625rem;
+            box-shadow: 0 0.3125rem 0.9375rem rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 6.25rem;
+            max-height: calc(100vh - 8rem);
+            overflow-y: auto;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .outline-sidebar.collapsed {
+            width: 0;
+            padding: 0;
+            margin: 0;
+            flex: 0 0 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateX(20px);
+        }
+
+        .outline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .outline-header h3 {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 4px;
+            color: #666;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn:hover {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .outline-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .outline-content li {
+            margin-bottom: 4px;
+        }
+
+        .outline-content a {
+            display: block;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.9rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .outline-content a:hover {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .outline-content a.active {
+            background-color: #e8f5e9;
+            color: #4CAF50;
+            font-weight: 500;
+        }
+
+        /* 缩进层级 */
+        .outline-level-1 { padding-left: 8px; }
+        .outline-level-2 { padding-left: 20px; }
+        .outline-level-3 { padding-left: 32px; }
+        .outline-level-4 { padding-left: 44px; }
+
+        /* 悬浮展开按钮 */
+        .float-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 48px;
+            height: 48px;
+            background-color: #fff;
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(20px) scale(0.8);
+            pointer-events: none;
+        }
+
+        .float-btn.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .float-btn:hover {
+            background-color: #4CAF50;
+            color: white;
+            box-shadow: 0 6px 16px rgba(76, 175, 80, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* 深色模式适配补充 */
+        body.dark-mode .outline-sidebar {
+            background-color: #1e1e1e;
+        }
+        body.dark-mode .outline-header {
+            border-bottom-color: #333;
+        }
+        body.dark-mode .icon-btn {
+            color: #aaa;
+        }
+        body.dark-mode .icon-btn:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        body.dark-mode .outline-content a {
+            color: #aaa;
+        }
+        body.dark-mode .outline-content a:hover {
+            background-color: #2d2d2d;
+            color: #fff;
+        }
+        body.dark-mode .outline-content a.active {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+        }
+        body.dark-mode .float-btn {
+            background-color: #333;
+            color: #fff;
+        }
+        body.dark-mode .float-btn:hover {
+            background-color: #4CAF50;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 1200px) {
+            .outline-sidebar {
+                display: none; /* 小屏幕默认隐藏大纲 */
+            }
+            .float-btn.visible {
+                display: flex; /* 可以在小屏幕显示浮动按钮，或者做成抽屉式，这里暂且隐藏 */
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -199,9 +377,25 @@
                         <p>请从左侧选择课程开始学习...</p>
                     </div>
                 </main>
+
+                <!-- 最右侧大纲栏 -->
+                <aside class="outline-sidebar" id="outline-sidebar">
+                    <div class="outline-header">
+                        <h3>大纲</h3>
+                        <button id="outline-close-btn" class="icon-btn" title="收起">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg>
+                        </button>
+                    </div>
+                    <div id="outline-content" class="outline-content"></div>
+                </aside>
             </div>
         </div>
     </section>
+
+    <!-- 悬浮展开按钮 -->
+    <button id="outline-float-btn" class="float-btn" title="展开大纲">
+        <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+    </button>
 
     <!-- 页脚 -->
     <footer class="footer">
@@ -295,12 +489,103 @@
                         contentEl.innerHTML = marked.parse(text);
                         // 平滑滚动到顶部
                         window.scrollTo({ top: 0, behavior: 'smooth' });
+                        // 生成大纲
+                        generateOutline();
                     })
                     .catch(error => {
                         console.error('加载失败:', error);
                         contentEl.innerHTML = `<p style="color: red;">加载课程失败: ${error.message}</p><p>请确保文件路径正确且服务器支持访问该文件。</p>`;
                     });
             }
+
+            // 生成大纲函数
+            function generateOutline() {
+                const outlineContent = document.getElementById('outline-content');
+                const headings = document.querySelectorAll('.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4');
+                
+                if (headings.length === 0) {
+                    outlineContent.innerHTML = '<p style="color: #999; font-size: 0.9rem; text-align: center;">暂无大纲</p>';
+                    return;
+                }
+
+                const ul = document.createElement('ul');
+                headings.forEach((heading, index) => {
+                    // 确保每个标题都有 ID
+                    if (!heading.id) {
+                        heading.id = 'heading-' + index;
+                    }
+
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = '#' + heading.id;
+                    a.textContent = heading.textContent;
+                    a.className = 'outline-level-' + heading.tagName.charAt(1);
+                    
+                    a.onclick = (e) => {
+                        e.preventDefault();
+                        heading.scrollIntoView({ behavior: 'smooth' });
+                        // 更新 URL hash 但不跳转
+                        history.pushState(null, null, '#' + heading.id);
+                    };
+
+                    li.appendChild(a);
+                    ul.appendChild(li);
+                });
+
+                outlineContent.innerHTML = '';
+                outlineContent.appendChild(ul);
+
+                // 更新高亮
+                highlightOutline();
+            }
+
+            // 高亮当前大纲项
+            function highlightOutline() {
+                const headings = document.querySelectorAll('.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4');
+                const outlineLinks = document.querySelectorAll('.outline-content a');
+                
+                let currentId = '';
+                const scrollPosition = window.scrollY + 100; // 偏移量
+
+                headings.forEach(heading => {
+                    if (heading.offsetTop <= scrollPosition) {
+                        currentId = heading.id;
+                    }
+                });
+
+                outlineLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentId) {
+                        link.classList.add('active');
+                        // 自动滚动大纲栏以保持高亮项可见
+                        link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                });
+            }
+
+            // 监听滚动事件
+            window.addEventListener('scroll', () => {
+                // 使用节流优化性能
+                if (window.outlineTimeout) clearTimeout(window.outlineTimeout);
+                window.outlineTimeout = setTimeout(highlightOutline, 100);
+            });
+
+            // 大纲展开/收起逻辑
+            const outlineSidebar = document.getElementById('outline-sidebar');
+            const outlineCloseBtn = document.getElementById('outline-close-btn');
+            const outlineFloatBtn = document.getElementById('outline-float-btn');
+
+            function toggleOutline() {
+                outlineSidebar.classList.toggle('collapsed');
+                if (outlineSidebar.classList.contains('collapsed')) {
+                    outlineFloatBtn.classList.add('visible');
+                } else {
+                    outlineFloatBtn.classList.remove('visible');
+                }
+            }
+
+            if (outlineCloseBtn) outlineCloseBtn.addEventListener('click', toggleOutline);
+            if (outlineFloatBtn) outlineFloatBtn.addEventListener('click', toggleOutline);
         });
     </script>
 </body>
