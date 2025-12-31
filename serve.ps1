@@ -18,6 +18,7 @@ function Get-ContentType($path) {
     ".gif" { return "image/gif" }
     ".ico" { return "image/x-icon" }
     ".txt" { return "text/plain; charset=utf-8" }
+    ".md" { return "text/plain; charset=utf-8" }
     default { return "application/octet-stream" }
   }
 }
@@ -31,7 +32,7 @@ while ($true) {
   $context = $listener.GetContext()
   $req = $context.Request
   $resp = $context.Response
-  $path = $req.Url.AbsolutePath.TrimStart('/')
+  $path = [System.Uri]::UnescapeDataString($req.Url.AbsolutePath.TrimStart('/'))
   if ([string]::IsNullOrWhiteSpace($path)) { $path = 'index.html' }
   $full = Join-Path $Root $path
   if (-not (Test-Path $full)) {
