@@ -1,13 +1,18 @@
 // Modal functionality with dynamic content
 window.addEventListener('load', function() {
     // Hide page loader when page is fully loaded
-    var pageLoader = document.getElementById('page-loader');
-    if (pageLoader) {
-        pageLoader.classList.add('hidden');
+    // 注意：learning.html 有自己的加载逻辑，这里只处理其他页面
+    if (!window.location.pathname.includes('learning.html')) {
+        var pageLoader = document.getElementById('page-loader');
+        if (pageLoader) {
+            pageLoader.classList.add('hidden');
+        }
     }
     
     // Get modal elements
     var modal = document.getElementById('software-modal');
+    if (!modal) return; // 如果当前页面没有模态框，直接返回
+
     var closeBtn = document.querySelector('.close-btn');
     var modalImg = document.getElementById('modal-software-img');
     var modalTitle = document.getElementById('modal-software-title');

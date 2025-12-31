@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习资料 - 常用软件分享</title>
+    <link rel="stylesheet" href="style.css?v=20240101">
+    <link rel="icon" href="img/user.png" type="image/png">
+    <!-- 引入 marked.js 用于解析 Markdown -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js"></script>
+    <style>
+        /* Markdown 内容样式 */
+        .markdown-body {
+            line-height: 1.8;
+            color: #333;
+        }
+        .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        .markdown-body h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+        .markdown-body h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 0.3em; }
+        .markdown-body h3 { font-size: 1.25em; }
+        .markdown-body p { margin-bottom: 1rem; }
+        .markdown-body ul, .markdown-body ol { padding-left: 2em; margin-bottom: 1rem; }
+        .markdown-body li { margin-bottom: 0.5rem; }
+        .markdown-body blockquote {
+            color: #6a737d;
+            border-left: 0.25em solid #dfe2e5;
+            padding-left: 1em;
+            margin: 0 0 1rem 0;
+        }
+        .markdown-body code {
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            background-color: rgba(27,31,35,0.05);
+            border-radius: 3px;
+            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+        }
+        .markdown-body pre {
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            background-color: #f6f8fa;
+            border-radius: 3px;
+            margin-bottom: 1rem;
+        }
+        .markdown-body pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        .markdown-body img {
+            max-width: 100%;
+            box-sizing: content-box;
+            background-color: #fff;
+        }
+        
+        /* 学习页面特定布局 */
+        .course-list {
+            list-style: none;
+        }
+        .course-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            margin-bottom: 5px;
+            display: block;
+            text-decoration: none;
+            color: #333;
+        }
+        .course-item:hover {
+            background-color: #f0f0f0;
+        }
+        .course-item.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        /* 深色模式适配 */
+        body.dark-mode .markdown-body { color: #e0e0e0; }
+        body.dark-mode .markdown-body h1, body.dark-mode .markdown-body h2 { border-bottom-color: #333; }
+        body.dark-mode .markdown-body blockquote { color: #aaa; border-left-color: #444; }
+        body.dark-mode .markdown-body code { background-color: rgba(255,255,255,0.1); }
+        body.dark-mode .markdown-body pre { background-color: #1e1e1e; }
+        body.dark-mode .course-item { color: #e0e0e0; }
+        body.dark-mode .course-item:hover { background-color: #333; }
+        body.dark-mode .course-item.active { background-color: #4CAF50; color: white; }
+
+        /* 页面加载动画 */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        /* 预加载图片隐藏 */
+        body > img[src^="img/"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="page-loader" id="page-loader">
+        <div class="loading-spinner"></div>
+        <div class="loading-text" style="margin-top: 1rem; color: #333; font-weight: bold;">正在准备学习资料...</div>
+    </div>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">软件分享</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="software.html">软件列表</a></li>
+                <li><a href="learning.html" style="color: #4CAF50;">我要学习</a></li>
+                <li><a href="index.html#about">关于我</a></li>
+                <li><button id="theme-toggle" class="theme-btn" title="切换主题">🌙</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 学习内容区域 -->
+    <section id="learning" class="software-section" style="padding-top: 6.25rem;">
+        <div class="container">
+            <div class="software-layout">
+                <!-- 左侧课程列表 -->
+                <aside class="sidebar fade-in">
+                    <h3>课程列表</h3>
+                    <div class="course-list" id="course-list">
+                        <!-- 课程列表将由JS动态生成 -->
+                    </div>
+                </aside>
+                
+                <!-- 右侧内容区 -->
+                <main class="main-content">
+                    <div id="course-content" class="markdown-body fade-in">
+                        <p>请从左侧选择课程开始学习...</p>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 常用软件分享.23数媒2班</p>
+        </div>
+    </footer>
+
+    <script>
+        // 模拟资源预加载
+        window.addEventListener('load', function() {
+            // 确保加载动画至少显示 500ms，提升用户体验
+            setTimeout(function() {
+                var pageLoader = document.getElementById('page-loader');
+                if (pageLoader) {
+                    pageLoader.classList.add('hidden');
+                }
+            }, 500);
+        });
+    </script>
+    <script src="script.js?v=20240101"></script>
+    <script>
+        // 课程文件列表
+        const courses = [
+            {
+                title: "数字媒体技术应用（精简版）",
+                file: "easytoteach/《数字媒体技术应用》（精简版）.md"
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const courseListEl = document.getElementById('course-list');
+            const contentEl = document.getElementById('course-content');
+            
+            // 生成课程列表
+            courses.forEach((course, index) => {
+                const item = document.createElement('a');
+                item.href = '#';
+                item.className = 'course-item';
+                item.textContent = course.title;
+                item.onclick = (e) => {
+                    e.preventDefault();
+                    loadCourse(course.file);
+                    
+                    // 更新激活状态
+                    document.querySelectorAll('.course-item').forEach(el => el.classList.remove('active'));
+                    item.classList.add('active');
+                };
+                courseListEl.appendChild(item);
+                
+                // 默认加载第一个课程
+                if (index === 0) {
+                    item.click();
+                }
+            });
+
+            // 加载 Markdown 文件
+            function loadCourse(filePath) {
+                contentEl.innerHTML = '<div class="loading-container"><div class="loading-spinner"></div></div>';
+                
+                fetch(filePath)
+                    .then(response => {
+                        if (!response.ok) throw new Error('网络响应异常');
+                        return response.text();
+                    })
+                    .then(text => {
+                        // 使用 marked 解析 Markdown
+                        contentEl.innerHTML = marked.parse(text);
+                        // 平滑滚动到顶部
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    })
+                    .catch(error => {
+                        console.error('加载失败:', error);
+                        contentEl.innerHTML = `<p style="color: red;">加载课程失败: ${error.message}</p><p>请确保文件路径正确且服务器支持访问该文件。</p>`;
+                    });
+            }
+        });
+    </script>
+</body>
+</html>
