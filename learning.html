@@ -60,25 +60,33 @@
         }
         
         /* 学习页面特定布局 */
-        .course-list {
-            list-style: none;
-        }
-        .course-item {
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            margin-bottom: 5px;
+        /* 使用 style.css 中的 .category-filter 和 .filter-btn 样式 */
+        .category-filter.vertical .filter-btn {
             display: block;
-            text-decoration: none;
+            width: 100%;
+            text-align: left;
+            margin-bottom: 5px;
+            /* 确保文本可见 */
             color: #333;
-        }
-        .course-item:hover {
             background-color: #f0f0f0;
+            opacity: 1;
+            visibility: visible;
         }
-        .course-item.active {
+        
+        .category-filter.vertical .filter-btn.active {
+            color: #fff;
             background-color: #4CAF50;
-            color: white;
+        }
+
+        /* 深色模式适配 */
+        body.dark-mode .category-filter.vertical .filter-btn {
+            color: #e0e0e0;
+            background-color: #2d2d2d;
+        }
+        
+        body.dark-mode .category-filter.vertical .filter-btn.active {
+            color: #fff;
+            background-color: #4CAF50;
         }
         
         /* 深色模式适配 */
@@ -87,9 +95,6 @@
         body.dark-mode .markdown-body blockquote { color: #aaa; border-left-color: #444; }
         body.dark-mode .markdown-body code { background-color: rgba(255,255,255,0.1); }
         body.dark-mode .markdown-body pre { background-color: #1e1e1e; }
-        body.dark-mode .course-item { color: #e0e0e0; }
-        body.dark-mode .course-item:hover { background-color: #333; }
-        body.dark-mode .course-item.active { background-color: #4CAF50; color: white; }
 
         /* 页面加载动画 */
         .page-loader {
@@ -139,16 +144,16 @@
         <div class="container">
             <div class="software-layout">
                 <!-- 左侧课程列表 -->
-                <aside class="sidebar fade-in">
+                <aside class="sidebar">
                     <h3>课程列表</h3>
-                    <div class="course-list" id="course-list">
+                    <div class="category-filter vertical" id="course-list">
                         <!-- 课程列表将由JS动态生成 -->
                     </div>
                 </aside>
                 
                 <!-- 右侧内容区 -->
                 <main class="main-content">
-                    <div id="course-content" class="markdown-body fade-in">
+                    <div id="course-content" class="markdown-body">
                         <p>请从左侧选择课程开始学习...</p>
                     </div>
                 </main>
@@ -215,16 +220,15 @@
             
             // 生成课程列表
             courses.forEach((course, index) => {
-                const item = document.createElement('a');
-                item.href = '#';
-                item.className = 'course-item';
+                const item = document.createElement('button');
+                item.className = 'filter-btn';
                 item.textContent = course.title;
                 item.onclick = (e) => {
                     e.preventDefault();
                     loadCourse(course.file);
                     
                     // 更新激活状态
-                    document.querySelectorAll('.course-item').forEach(el => el.classList.remove('active'));
+                    document.querySelectorAll('.filter-btn').forEach(el => el.classList.remove('active'));
                     item.classList.add('active');
                 };
                 courseListEl.appendChild(item);
