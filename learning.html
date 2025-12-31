@@ -58,7 +58,33 @@
             box-sizing: content-box;
             background-color: #fff;
         }
-        
+
+        /* Markdown 表格样式 */
+        .markdown-body table {
+            display: block;
+            width: 100%;
+            overflow: auto;
+            margin-bottom: 1rem;
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+        .markdown-body table th,
+        .markdown-body table td {
+            padding: 6px 13px;
+            border: 1px solid #dfe2e5;
+        }
+        .markdown-body table th {
+            font-weight: 600;
+            background-color: #f6f8fa;
+        }
+        .markdown-body table tr {
+            background-color: #fff;
+            border-top: 1px solid #c6cbd1;
+        }
+        .markdown-body table tr:nth-child(2n) {
+            background-color: #f6f8fa;
+        }
+
         /* 学习页面特定布局 */
         /* 使用 style.css 中的 .category-filter 和 .filter-btn 样式 */
         .category-filter.vertical .filter-btn {
@@ -95,6 +121,22 @@
         body.dark-mode .markdown-body blockquote { color: #aaa; border-left-color: #444; }
         body.dark-mode .markdown-body code { background-color: rgba(255,255,255,0.1); }
         body.dark-mode .markdown-body pre { background-color: #1e1e1e; }
+        
+        /* 深色模式表格适配 */
+        body.dark-mode .markdown-body table th,
+        body.dark-mode .markdown-body table td {
+            border-color: #444;
+        }
+        body.dark-mode .markdown-body table th {
+            background-color: #2d2d2d;
+        }
+        body.dark-mode .markdown-body table tr {
+            background-color: #1e1e1e;
+            border-top-color: #444;
+        }
+        body.dark-mode .markdown-body table tr:nth-child(2n) {
+            background-color: #262626;
+        }
 
         /* 页面加载动画 */
         .page-loader {
