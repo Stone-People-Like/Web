@@ -1,0 +1,2 @@
+This is a test file to verify server access.
+If you can see this, the folder permissions are likely correct.
